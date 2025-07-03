@@ -33,12 +33,14 @@ const MovieDetails = () => {
       <h1 className="text-4xl font-bold">{movie.title}</h1>
       <p>{movie.overview}</p>
 
-<iframe
+{/* <iframe
   src={`https://vidsrc.cc/v2/embed/movie/${movie.id}`}
   frameborder="0"
   allowfullscreen
   allow="fullscreen" 
-></iframe>
+></iframe> */}
+
+<iframe src={`https://vidlink.pro/movie${movie.id}`} frameborder="0" allowfullscreen allow='fullscreen'></iframe>
 
     </div>
   );
