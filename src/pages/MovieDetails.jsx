@@ -34,9 +34,10 @@ const MovieDetails = () => {
       <p>{movie.overview}</p>
 
 <iframe
-  src={`https://vidlink.pro/movie/${movie.Id}`}
+  src={`https://vidsrc.cc/v2/embed/movie/${movie.id}`}
   frameborder="0"
   allowfullscreen
+  allow="fullscreen" 
 ></iframe>
 
     </div>
