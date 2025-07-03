@@ -40,7 +40,7 @@ const MovieDetails = () => {
   allow="fullscreen" 
 ></iframe> */}
 
-<iframe src={`https://vidlink.pro/movie${movie.id}`} frameborder="0" allowfullscreen allow='fullscreen'></iframe>
+<iframe src={`https://vidlink.pro/movie/${movie.id}`} frameborder="0" allowfullscreen allow='fullscreen'></iframe>
 
     </div>
   );
