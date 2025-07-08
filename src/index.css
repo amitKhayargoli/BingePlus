@@ -4,7 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @theme {
-  --color-primary: #030014;
+  --color-primary: #000000;
 
   --color-light-100: #cecefb;
   --color-light-200: #a8b5db;
@@ -13,7 +13,7 @@
 
   --color-dark-100: #0f0d23;
 
-  --font-dm-sans: DM Sans, sans-serif;
+  --font-inter: Inter;
 
   --breakpoint-xs: 480px;
 
@@ -24,11 +24,7 @@
   body {
     font-family: 'Inter', sans-serif;
     font-optical-sizing: auto;
-    background: #030014;
-  }
-
-  h1 {
-    @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-[76px];
+    background: #000000;
   }
 
   h2 {
@@ -49,63 +45,18 @@
 }
 
 @layer components {
-  .pattern {
-    @apply bg-hero-pattern w-full h-screen bg-center bg-cover absolute z-0;
-  }
-
-  .wrapper {
-    @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
-  }
-
-  .trending {
-    @apply mt-20;
-
-    & ul {
-      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
-    }
-
-    & ul li {
-      @apply min-w-[230px] flex flex-row items-center;
-    }
-
-    & ul li p {
-      @apply fancy-text mt-[22px] text-nowrap;
-    }
-
-    & ul li img {
-      @apply w-[127px] h-[163px] rounded-lg object-cover -ml-3.5;
-    }
-  }
-
-  .search {
-    @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto;
-
-    & div {
-      @apply relative flex items-center;
-    }
-
-    & img {
-      @apply absolute left-2 h-5 w-5;
-    }
-
-    & input {
-      @apply w-full bg-transparent py-2 sm:pr-10 pl-10 text-base text-gray-200 placeholder-light-200 outline-hidden;
-    }
-  }
 
   .all-movies {
-    @apply space-y-9;
+    @apply space-y-2;
 
     & ul {
-      @apply grid grid-cols-1 gap-5 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+      @apply grid grid-cols-1 gap-3 gap-y-20 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5;
     }
   }
 
   .movie-card {
-    @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
-
-    & img {
-      @apply rounded-lg h-auto w-full;
+    img {
+      @apply rounded-lg h-auto w-full object-cover transition duration-300 group-hover:brightness-40;
     }
 
     & h3 {
@@ -143,7 +94,11 @@
 }
 
 @utility text-gradient {
-  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+  @apply font-bold bg-gradient-to-b from-white to-black bg-clip-text text-transparent;
+}
+
+@utility gray-gradient {
+  @apply font-bold bg-gradient-to-b from-[#D9D9D9] to-[#737373] bg-clip-text text-transparent;
 }
 
 @utility fancy-text {
