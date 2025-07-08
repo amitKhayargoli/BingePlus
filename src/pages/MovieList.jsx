@@ -6,6 +6,7 @@ import MovieCard from '../components/MovieCard';
 import Spinner from '../components/Spinner';
 import Search from '../components/Search';
 import '../index.css'; // optional for styles
+import Navbar from '../components/navbar';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -66,20 +67,17 @@ const MovieList = () => {
   }, [debouncedSearchTerm]);
 
   return (
-    <main className="pattern">
+    <>
+    <Navbar/>
+    <main className="">
       <div className="wrapper">
-        <header className="flex flex-col items-center mb-5">
-          <img src="./hero.png" alt="Hero Banner" />
-          <h1 className="text-6xl text-white text-center">
-            Find <span className="text-gradient">Movies</span> You'll Enjoy <br />
-            Without the Hassle
-          </h1>
+        <header className="flex items-center">
 
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
         </header>
 
-        <section className="all-movies">
-          <h2>All Movies</h2>
+        <section className="all-movies px-20">
+          <h2>Movies</h2>
 
           {isLoading ? (
             <Spinner />
@@ -89,9 +87,9 @@ const MovieList = () => {
             <ul>
               {movieList.map((movie) => (
                 <MovieCard
-                  key={movie.id}
-                  movie={movie}
-                  onClick={() => navigate(`/movies/${movie.id}`)}
+                key={movie.id}
+                movie={movie}
+                onClick={() => navigate(`/movies/${movie.id}`)}
                 />
               ))}
             </ul>
@@ -99,6 +97,7 @@ const MovieList = () => {
         </section>
       </div>
     </main>
+          </>
   );
 };
 
