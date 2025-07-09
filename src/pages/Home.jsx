@@ -26,7 +26,7 @@ const API_OPTIONS = {
 const Home = () => {
 
   const navigate = useNavigate();
-
+  const [isBackdropLoaded, setIsBackdropLoaded] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [movieList, setMovieList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
@@ -79,7 +79,7 @@ useEffect(() => {
     <>
     <Navbar/>
  <div className="relative flex flex-col justify-center movie-details text-white">
-      <img className='lg:aspect-auto w-auto aspect-[9/16] object-cover' src={hero}  alt="" />
+      <img className='lg:aspect-auto w-auto aspect-[9/16] object-cover' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" />
 
  <div className="p-2 sm:p-5 md:p-10 absolute">
     <h1 className="text-2xl sm:text-4xl font-bold gray-gradient">Thunderbolts*</h1>
@@ -103,12 +103,15 @@ useEffect(() => {
     </div>
 
 
- 
+ {isBackdropLoaded && (
+
+  <>
+
+  
        <section className="all-movies px-5 mb-8">
           <h2 className='text-xl font-bold'>Trending Now</h2>
 
                 {isLoading ? (
-                    // <Spinner />
                           <Spinner className="h-8 w-8" />
                 ) : errorMessage ? (
                     <p className="text-red-500">{errorMessage}</p>
@@ -203,7 +206,8 @@ useEffect(() => {
             </div>
           )}
         </section>
-
+        </>
+ )};
 
     </>
   )
