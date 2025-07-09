@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
 
-// const textgradient = "font-bold bg-gradient-to-b from-white to-black bg-clip-text text-transparent";
 const Navbar = () => {
 
   const navigate = useNavigate();

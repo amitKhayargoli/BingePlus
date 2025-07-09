@@ -1,6 +1,7 @@
 import React from 'react'
-import Navbar from '../components/navbar'
+
 import { useParams } from 'react-router';
+import Navbar from '../components/navbar';
 
 const WatchMovie = () => {
       const { id } = useParams();
