@@ -6,7 +6,7 @@ import MovieCard from '../components/MovieCard';
 import { Spinner } from "@material-tailwind/react";
 import Search from '../components/Search';
 import '../index.css'; // optional for styles
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;

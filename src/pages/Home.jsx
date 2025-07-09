@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Spinner } from "@material-tailwind/react";
 
-import Navbar from '../components/navbar'
+import Navbar from '../components/Navbar'
 import hero from "/thunderbolts.png";
 import { useNavigate } from 'react-router';
 import MovieCard from '../components/MovieCard';

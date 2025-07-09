@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import icon from "/icon.png";
 import youtube from "/Youtube.png";
 import MovieCard from '../components/MovieCard';
