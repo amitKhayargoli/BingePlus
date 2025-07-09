@@ -3,7 +3,7 @@ import { useDebounce } from 'react-use';
 import { useNavigate } from 'react-router-dom';
 
 import MovieCard from '../components/MovieCard';
-import Spinner from '../components/Spinner';
+import { Spinner } from "@material-tailwind/react";
 import Search from '../components/Search';
 import '../index.css'; // optional for styles
 import Navbar from '../components/navbar';
@@ -77,10 +77,11 @@ const MovieList = () => {
         </header>
 
         <section className="all-movies px-20">
-          <h2>Movies</h2>
+          <h2 className='text-sm'>Movies</h2>
 
           {isLoading ? (
-            <Spinner />
+       <Spinner className="h-8 w-8" />
+
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
           ) : (
