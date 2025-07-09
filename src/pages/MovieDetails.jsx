@@ -4,6 +4,7 @@ import Navbar from '../components/navbar';
 import icon from "/icon.png";
 import youtube from "/Youtube.png";
 import MovieCard from '../components/MovieCard';
+import LazyLoad from 'react-lazyload';
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -17,6 +18,7 @@ const API_OPTIONS = {
 };
 
 const MovieDetails = () => {
+  const [isBackdropLoaded, setIsBackdropLoaded] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
@@ -74,6 +76,13 @@ const MovieDetails = () => {
   };
 
   useEffect(() => {
+
+      setMovie(null);
+      setbackdropUrl(null);
+      setLogoUrl(null);
+      setAlternativeMovies([]);
+     setIsBackdropLoaded(false); 
+
     fetchMovie();
     getMovieLogoPath()
       .then((url) => {
@@ -97,7 +106,7 @@ const MovieDetails = () => {
     <>
       <Navbar />
       <div className="relative movie-details text-white">
-        <img src={backdropUrl} alt={movie.title} className="md:aspect-auto aspect-[9/16] w-full h-auto object-cover" />
+        <img src={backdropUrl} alt={movie.title}  onLoad={() => setIsBackdropLoaded(true)} className="md:aspect-auto aspect-[9/16] w-full h-auto object-cover" />
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
@@ -146,8 +155,8 @@ const MovieDetails = () => {
 
 {/* Alternative */}
 
-{backdropUrl&&(
 
+  {/* <LazyLoad  offset={20} once>
       <div className='all-movies text-white text-xl font-bold px-12'>
           <h1>Recommended For You</h1>
           
@@ -159,11 +168,28 @@ const MovieDetails = () => {
                 // onClick={() => navigate(`/movies/${movie.id}`)}
                 // />
 
-                <img  className='rounded-lg' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
+                <img loading='lazy'  className='rounded-lg' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}></img>
               ))}
             </ul>
 
       </div>
+</LazyLoad> */}
+
+{isBackdropLoaded && (
+  <div className="all-movies text-white text-xl font-bold px-12">
+    <h1>Recommended For You</h1>
+    <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
+      {alternativeMovies.slice(0, 5).map((movie) => (
+        <img 
+          key={movie.id}
+          loading="lazy"
+          className="rounded-lg cursor-pointer"
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          onClick={() => navigate(`/movies/${movie.id}`)}
+        />
+      ))}
+    </ul>
+  </div>
 )}
     </>
   );

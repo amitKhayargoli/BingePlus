@@ -79,7 +79,7 @@ useEffect(() => {
     <>
     <Navbar/>
  <div className="relative flex flex-col justify-center movie-details text-white">
-      <img className='lg:aspect-auto w-auto aspect-[9/16] object-cover' src={hero} alt="" />
+      <img className='lg:aspect-auto w-auto aspect-[9/16] object-cover' src={hero}  alt="" />
 
  <div className="p-2 sm:p-5 md:p-10 absolute">
     <h1 className="text-2xl sm:text-4xl font-bold gray-gradient">Thunderbolts*</h1>
