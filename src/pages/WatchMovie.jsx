@@ -9,11 +9,14 @@ const WatchMovie = () => {
     <>
     <Navbar/>
     <div className='flex justify-center w-full h-full'>
-        <iframe
-  src={`https://vidlink.pro/movie/${id}`}
-  frameborder="0"
-  allowfullscreen
-></iframe>
+<div className="aspect-video w-full">
+  <iframe
+    src={`https://vidlink.pro/movie/${id}`}
+    allowFullScreen
+    className="w-full h-full"
+    title="Movie Player"
+  />
+</div>
     </div>
     </>
   )
