@@ -78,16 +78,16 @@ useEffect(() => {
   return (
     <>
     <Navbar/>
- <div className="relative flex flex-col justify-center movie-details text-white">
-      <img className='lg:aspect-auto w-auto aspect-[9/16] object-cover' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" />
+ <div className="flex flex-col justify-center movie-details text-white bg-[url(/thunderbolts.png)] lg:aspect-auto w-auto sm:h-[95vh]">
+      {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
- <div className="p-2 sm:p-5 md:p-10 absolute">
+ <div className="p-2 sm:p-5 md:p-10">
     <h1 className="text-2xl sm:text-4xl font-bold gray-gradient">Thunderbolts*</h1>
-      <p className='w-80 md:w-110 text-sm font-extralight'>After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.</p>
+      <p className='hidden sm:block w-80 md:w-110 text-sm font-extralight'>After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.</p>
       
       {/* Buttons */}
       
-    <div className='flex gap-4'>
+    <div className='flex flex-col sm:flex-row gap-4'>
         
       <div className='cursor-pointer w-[130px] flex p-3 bg-white text-black font-semibold rounded-xl items-center'>
         <img className='w-[12px] h-[15px] mr-2' src={icon} alt="" />
@@ -103,7 +103,7 @@ useEffect(() => {
     </div>
 
 
- {isBackdropLoaded && (
+ {/* {isBackdropLoaded && ( */}
 
   <>
 
@@ -207,7 +207,7 @@ useEffect(() => {
           )}
         </section>
         </>
- )};
+ {/* )}; */}
 
     </>
   )
