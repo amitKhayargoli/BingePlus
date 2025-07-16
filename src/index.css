@@ -123,7 +123,8 @@ span h1{
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: white;         /* arrow color */
-  font-size: 24px;      /* adjust as needed */
-  font-weight: bold;    /* optional */
+  color: white;      
+  font-size: 24px;      
+  font-weight: bold;    
+}
 }
