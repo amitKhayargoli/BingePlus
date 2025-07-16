@@ -1,13 +1,14 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 const Search = ({searchTerm,setSearchTerm}) => {
   return (
+    <>
+    <Navbar></Navbar>
     <div className='search ' >
-        <div className=''>
-            <img src="search.svg" alt="search" />
-            <input className='' type="text" placeholder='Search through thousands of movies' value={searchTerm} onChange={(e)=>setSearchTerm(e.target.value)}/>
-        </div>
+
     </div>
+    </>
   )
 }
 

@@ -90,10 +90,11 @@
       @apply text-gray-100 font-medium text-base;
     }
   }
-}
+
+
 
 @utility text-gradient {
-  @apply font-bold bg-gradient-to-b from-white to-black bg-clip-text text-transparent;
+  @apply font-bold bg-gradient-to-r from-white to-[#3c3c3c] bg-clip-text text-transparent;
 }
 
 @utility gray-gradient {
@@ -115,3 +116,14 @@
   }
 }
 
+span h1{
+  font-size: 16px;
+}
+
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: white;         /* arrow color */
+  font-size: 24px;      /* adjust as needed */
+  font-weight: bold;    /* optional */
+}

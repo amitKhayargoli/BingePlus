@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import {
+  Home,
   Film,
   Tv,
   Bookmark,
@@ -31,11 +32,15 @@ const Navbar = () => {
 
 <div className='md:flex items-center gap-5 hidden '>
 
-<div className='px-2 py-1 border-1 border-gray-600 rounded-lg flex gap-2 max-w-40  '>
+<div className='border-1 rounded-lg flex gap-2 '>
 
-  <Search className='w-[22px] h-[22px]' alt="" />
+  <Search  onClick={()=>{
+    navigate("/search")
+  }} className='w-[22px] h-[22px] text-white cursor-pointer' alt="" />
 
-  <input type="text" className='outline-none placeholder:text-white text-white ' placeholder='Start searching' />
+  {/* <input onClick={()=>{
+    navigate("/search")
+  }} type="text" className='outline-none placeholder:text-white text-white cursor-pointer flex-1' placeholder='Start searching' /> */}
 
 
 </div>  
@@ -57,17 +62,21 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Bottom Navbar */}
-      <div className='md:hidden fixed bottom-0 left-0 right-0 bg-black text-white z-50 shadow-t px-5 py-4 flex justify-between items-center'>
+      <div className='md:hidden fixed bottom-0 left-0 right-0 bg-transparent backdrop-blur-[4px] text-white z-50 shadow-t px-5 py-2 flex justify-between items-center'>
         
         
         <span className='flex flex-col items-center'>
-          <Film onClick={() => navigate('/movies')} className="w-6 h-6 cursor-pointer " />
+          <Home onClick={() => navigate('/')} className="w-5 h-5 cursor-pointer " />
+            <h1>Home</h1>
+          </span>
+        <span className='flex flex-col items-center'>
+          <Film onClick={() => navigate('/movies')} className="w-5 h-5 cursor-pointer " />
             <h1>Movies</h1>
           </span>
 
           <span className='flex flex-col items-center'>
 
-        <Tv onClick={() => navigate('/tv')} className="w-6 h-6 cursor-pointer" />
+        <Tv onClick={() => navigate('/tv')} className="w-5 h-5 cursor-pointer" />
             <h1>Shows</h1>
 
           </span>
@@ -78,12 +87,12 @@ const Navbar = () => {
 <span className='flex flex-col items-center'>
 
         
-        <Search onClick={() => navigate('/search')} className="w-6 h-6 cursor-pointer" />
+        <Search onClick={() => navigate('/search')} className="w-5 h-5 cursor-pointer" />
                <h1>Search</h1>
 </span>
 
 <span className='flex flex-col items-center'>
-        <User onClick={() => navigate('/profile')} className="w-6 h-6 cursor-pointer" />
+        <User onClick={() => navigate('/profile')} className="w-5 h-5 cursor-pointer" />
 <h1>User</h1>
 </span>
       </div>

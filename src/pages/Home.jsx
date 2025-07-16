@@ -78,23 +78,23 @@ useEffect(() => {
   return (
     <>
     <Navbar/>
- <div className="flex flex-col justify-center movie-details text-white bg-[url(/thunderbolts.png)] lg:aspect-auto w-auto sm:h-[95vh]">
+ <div className="flex flex-col justify-center items-center movie-details text-white bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
       {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
- <div className="p-2 sm:p-5 md:p-10">
+ <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
     <h1 className="text-2xl sm:text-4xl font-bold gray-gradient">Thunderbolts*</h1>
-      <p className='hidden sm:block w-80 md:w-110 text-sm font-extralight'>After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.</p>
+      <p className='hidden sm:block w-100 md:w-150 text-lg font-extralight'>After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.</p>
       
       {/* Buttons */}
       
-    <div className='flex flex-col sm:flex-row gap-4'>
+    <div className='flex flex-col sm:flex-row gap-4 justify-center'>
         
-      <div className='cursor-pointer w-[130px] flex p-3 bg-white text-black font-semibold rounded-xl items-center'>
-        <img className='w-[12px] h-[15px] mr-2' src={icon} alt="" />
+      <div onClick={()=>navigate('/watch/986056')} className='mt-2 cursor-pointer w-[140px] flex p-3 bg-white text-black font-semibold rounded-xl items-center'>
+        <img className='w-[12px] h-[15px] mx-2' src={icon} alt="" />
         <h1>Watch Now</h1>
       </div>
-      <div onClick={()=>navigate('/movies/986056')}  className='cursor-pointer w-[100px] flex p-3 bg-black text-white font-semibold rounded-xl items-center'>
-        <img className='w-[15px] h-[15px] mr-2' src={info} alt="" />
+      <div onClick={()=>navigate('/movies/986056')}  className='mt-2 cursor-pointer w-[120px] flex p-3 bg-black text-white font-semibold rounded-xl items-center'>
+        <img className='w-[20px] h-[20px] mx-2' src={info} alt="" />
         <h1>Details</h1>
       </div>
     </div>
