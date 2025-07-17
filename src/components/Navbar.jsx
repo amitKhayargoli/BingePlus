@@ -24,10 +24,29 @@ const Navbar = () => {
   Binge+
 </h1>
 <ul className='hidden text-white md:flex gap-8 ml-20'>
-    <li onClick={()=>navigate('/movies')} className="cursor-pointer text-sm gray-gradient flex items-center transition-all duration-200"><Film className='w-[18px] mr-1 text-white' alt="" />Movies</li>
-    <li className="cursor-pointer text-sm gray-gradient flex items-center"><Tv className='w-[18px]  mr-1 text-white'  alt="" />TV Shows</li>
-    <li className="cursor-pointer text-sm gray-gradient flex items-center"><Bookmark className='w-[18 px] h-[20px] text-white'   alt="" />Watchlist</li>
+  <li
+    onClick={() => navigate('/movies')}
+    className="cursor-pointer text-sm flex items-center px-3 py-2 rounded-4xl transition-all duration-200 hover:bg-[#0c0c0c]  "
+  >
+    <Film className="w-[18px] mr-1 text-white" />
+    <span className="gray-gradient">Movies</span>
+  </li>
 
+  <li
+    onClick={() => navigate('/tv')}
+    className="cursor-pointer text-sm flex items-center px-3 py-2 rounded-4xl transition-all duration-200 hover:bg-[#0c0c0c]"
+  >
+    <Tv className="w-[18px] mr-1 text-white" />
+    <span className="gray-gradient">TV Shows</span>
+  </li>
+
+  <li
+    onClick={() => navigate('/watchlist')}
+    className="cursor-pointer text-sm flex items-center px-3 py-2 rounded-4xl transition-all duration-200 hover:bg-[#0c0c0c]"
+  >
+    <Bookmark className="w-[18px] h-[20px] mr-1 text-white" />
+    <span className="gray-gradient">Watchlist</span>
+  </li>
 </ul>
 
 <div className='md:flex items-center gap-5 hidden '>
@@ -76,7 +95,7 @@ const Navbar = () => {
 
           <span className='flex flex-col items-center'>
 
-        <Tv onClick={() => navigate('/tv')} className="w-5 h-5 cursor-pointer" />
+        <Tv className="w-5 h-5 cursor-pointer" />
             <h1>Shows</h1>
 
           </span>
@@ -92,7 +111,7 @@ const Navbar = () => {
 </span>
 
 <span className='flex flex-col items-center'>
-        <User onClick={() => navigate('/profile')} className="w-5 h-5 cursor-pointer" />
+        <User  className="w-5 h-5 cursor-pointer" />
 <h1>User</h1>
 </span>
       </div>
