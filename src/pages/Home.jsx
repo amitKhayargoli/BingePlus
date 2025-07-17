@@ -108,8 +108,8 @@ useEffect(() => {
   <>
 
   
-       <section className="all-movies px-5 mb-8">
-          <h2 className='text-xl text-white font-bold'>Trending Now</h2>
+       <section className="all-movies px-5 mb-8 mt-3">
+          <h2 className='md:text-2xl  text-xl text-white font-bold'>Trending Now</h2>
 
                 {isLoading ? (
                           <Spinner className="h-8 w-8" />
@@ -158,7 +158,7 @@ useEffect(() => {
         </section>
  
        <section className="all-movies px-5">
-          <h2 className='text-xl text-white font-bold'>Top Rated</h2>
+          <h2 className='md:text-2xl text-xl text-white font-bold'>Top Rated</h2>
 
                 {isLoading ? (
       <Spinner className="h-8 w-8" />

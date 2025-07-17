@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import MovieCard from '../components/MovieCard';
 import { Spinner } from "@material-tailwind/react";
-import Search from '../components/Search';
 import '../index.css'; // optional for styles
 import Navbar from '../components/Navbar';
 
@@ -69,18 +68,18 @@ const MovieList = () => {
   return (
     <>
     <Navbar/>
-    <main className="">
+    <main className="pt-10 md:pt-0">
       <div className="wrapper">
         <header className="flex items-center">
 
 
         </header>
 
-        <section className="all-movies px-20">
-          <h2 className='text-sm'>Movies</h2>
+        <section className="all-movies px-10 md:px-20 text-white">
+          <h1 className='text-4xl font-bold'>Movies</h1>
 
           {isLoading ? (
-       <Spinner className="h-8 w-8" />
+       <Spinner className="h-8 w-8 fixed top-1/2 left-1/2" />
 
           ) : errorMessage ? (
             <p className="text-red-500">{errorMessage}</p>
