@@ -87,13 +87,13 @@ useEffect(() => {
       
       {/* Buttons */}
       
-    <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+    <div className='flex flex-col sm:flex-row text-sm md:text-md gap-0 md:gap-4 justify-center'>
         
-      <div onClick={()=>navigate('/watch/986056')} className='mt-2 cursor-pointer w-[140px] flex p-3 bg-white text-black font-semibold rounded-xl items-center'>
+      <div onClick={()=>navigate('/watch/986056')} className='mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-white text-black font-semibold rounded-xl items-center'>
         <img className='w-[12px] h-[15px] mx-2' src={icon} alt="" />
         <h1>Watch Now</h1>
       </div>
-      <div onClick={()=>navigate('/movies/986056')}  className='mt-2 cursor-pointer w-[120px] flex p-3 bg-black text-white font-semibold rounded-xl items-center'>
+      <div onClick={()=>navigate('/movies/986056')}  className='mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-black text-white font-semibold rounded-xl items-center'>
         <img className='w-[20px] h-[20px] mx-2' src={info} alt="" />
         <h1>Details</h1>
       </div>

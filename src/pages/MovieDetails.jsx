@@ -112,11 +112,11 @@ const MovieDetails = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
 
         {/* inside image div */}
-        <div className="text-center absolute inset-0 flex flex-col items-center mt-20 gap-5 px-4 z-10">
+        <div className="text-center absolute inset-0 flex flex-col items-center mt-20 gap-5 px-4 z-10 top-1/4 md:top-0">
           {logoUrl ? (
             <img
               src={logoUrl}
-              alt={`${movie.title} logo`}
+              alt={`${movie.title}`}
               className="mx-auto max-w-xs object-contain"
             />
           ) : (
@@ -139,7 +139,7 @@ const MovieDetails = () => {
           </div>
 
           <div>
-            <h1 className="text-[#737373]">
+            <h1 className="text-[#ffffff]">
               {Number(movie.vote_average.toFixed(1))} IMDB Rating
             </h1>
 
