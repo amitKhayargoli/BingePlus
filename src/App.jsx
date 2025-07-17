@@ -6,6 +6,8 @@ import WatchMovie from './pages/WatchMovie';
 import SearchAll from './components/SearchAll';
 
 const App = () => {
+
+
   return (
     <Router>
       <Routes>
