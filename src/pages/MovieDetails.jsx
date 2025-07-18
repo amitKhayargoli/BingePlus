@@ -33,7 +33,7 @@ const MovieDetails = () => {
       const response = await fetch(`${API_BASE_URL}/movie/${id}`, API_OPTIONS);
       const data = await response.json();
 
-      const response2 = await fetch(`${API_BASE_URL}/movie/${id}/recommendations?language=en-US&page=1`, API_OPTIONS);
+      const response2 = await fetch(`${API_BASE_URL}/movie/${id}/recommendations`, API_OPTIONS);
       const data2 = await response2.json();
 
 
@@ -46,7 +46,7 @@ const MovieDetails = () => {
       setAlternativeMovies(data2.results || []);
     console.log(data2);
       setMovie(data);
-      setbackdropUrl(`https://image.tmdb.org/t/p/w1920${data.backdrop_path}`);
+
     } catch (err) {
       console.error('Error fetching movie:', err);
       setError(err);
@@ -59,12 +59,15 @@ const MovieDetails = () => {
   const getMovieLogoPath = async () => {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/movie/${id}/images?api_key=${API_KEY}`
+        `${API_BASE_URL}/movie/${id}/images?api_key=${API_KEY}`,API_OPTIONS
       );
       const data = await response.json();
-
+      console.log(data);
       const logo = data.logos.find(logo => logo.iso_639_1 === 'en') || data.logos[0];
+      const url = data.backdrops[2].file_path;
+      setbackdropUrl(`https://image.tmdb.org/t/p/w1920${url}`);
 
+      console.log(url);
       if (logo) {
         return `https://image.tmdb.org/t/p/original${logo.file_path}`;
       }
@@ -76,7 +79,6 @@ const MovieDetails = () => {
   };
 
   useEffect(() => {
-
       setMovie(null);
       setbackdropUrl(null);
       setLogoUrl(null);
@@ -87,7 +89,7 @@ const MovieDetails = () => {
     getMovieLogoPath()
       .then((url) => {
         setLogoUrl(url);
-      })
+      })  
       .catch(() => {});
   }, [id]);
 
@@ -112,7 +114,7 @@ const MovieDetails = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
 
         {/* inside image div */}
-        <div className="text-center absolute inset-0 flex flex-col items-center mt-20 gap-5 px-4 z-10 top-1/4 md:top-0">
+        <div className="text-center absolute inset-0 flex flex-col items-center md:mt-20 gap-5 px-4 z-10 top-1/4 md:top-0">
           {logoUrl ? (
             <img
               src={logoUrl}

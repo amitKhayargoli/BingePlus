@@ -60,6 +60,8 @@ const Home = () => {
       }
 
       setMovieList(data.results || []);
+        console.log(movieList);
+
       setTopRatedList(data2.results || []);
     } catch (error) {
       console.error(`Error fetching movies:`, error);
