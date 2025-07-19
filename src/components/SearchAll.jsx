@@ -32,7 +32,7 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
   const searchMovies = async(query)=>{
     setIsLoading(true);
     try {
-      const endpoint = `${API_BASE_URL}/search/movie?query=${encodeURIComponent(query)}`;
+      const endpoint = `${API_BASE_URL}/search/multi?query=${encodeURIComponent(query)}`;
       const response = await fetch(endpoint, API_OPTIONS);
 
       if (!response.ok) {
