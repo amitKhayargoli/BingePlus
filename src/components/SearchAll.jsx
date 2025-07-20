@@ -32,7 +32,7 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
   const searchMovies = async(query)=>{
     setIsLoading(true);
     try {
-      const endpoint = `${API_BASE_URL}/search/multi?query=${encodeURIComponent(query)}`;
+      const endpoint = `${API_BASE_URL}/search/multi?query=${encodeURIComponent(query)} & language=en-US`;
       const response = await fetch(endpoint, API_OPTIONS);
 
       if (!response.ok) {
@@ -47,7 +47,17 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
         return;
       }
 
-      setMovieList(data.results || []);
+    const filteredResults = data.results.filter((item) => {
+      const isValidType = item.media_type === 'movie' || item.media_type === 'tv';
+      const isValidLanguage = item.original_language === 'en' || item.original_language === 'hi' || item.original_language === 'ja' ;
+
+      const hasValidTitle = item.title !== 'NA' && item.name !== 'NA' && (item.title || item.name);
+      const hasValidOverview = item.overview && item.overview !== 'NA';
+      const hasValidPoster = item.poster_path && item.poster_path !== 'NA';
+
+      return isValidType && isValidLanguage && hasValidTitle && hasValidOverview && hasValidPoster;
+    });
+      setMovieList(filteredResults || []);
 
     } catch (error) {
       console.error(`Error fetching movies:`, error);
