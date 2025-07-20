@@ -3,7 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router';
 import Navbar from '../components/Navbar';
 
-const WatchMovie = (id) => {
+const WatchMovie = ({id}) => {
   return (
     <div className='flex justify-center w-full h-full mt-10 sm:mt-0'>
 <div className="aspect-video w-full">
