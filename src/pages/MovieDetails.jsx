@@ -139,153 +139,101 @@ const MovieDetails = () => {
       <div
         className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 "
         style={{
-          backgroundImage: backdropUrl && isBackdropLoaded ? `url(${backdropUrl})` : undefined,
+          backgroundImage: backdropUrl && isBackdropLoaded && !watchMovie ? `url(${backdropUrl})` : undefined,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           aspectRatio: '16/9',
         }}
       >
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+        {(!watchMovie) && <>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+        </>}
 
-
-
-        {
-          watchMovie==true ? (
+        {/* Backdrop area: either video or details */}
+        {watchMovie ? (
+          <div className="w-full h-full min-h-[400px] flex items-center justify-center z-10" style={{ aspectRatio: '16/9' }}>
             <WatchMovie id={id} />
-          ): 
-            isBackdropLoaded && !watchMovie ? (
-          <div className=" flex gap-5 z-10 w-full pl-12">
-            {/* {!logoUrl ? (
-              <img
-                src={logoUrl}
-                alt={`${movie.title}`}
-                className="mx-auto max-w-xs object-contain w-30"
-              />
-            ) : ( */}
-            {/* )} */}
-
-            
-              <img src={posterURL} className='w-30 rounded-lg' alt="" />
-
-              <div className='flex flex-col justify-center'>
-
-              <h1 className="text-xl font-bold">{movie.title}</h1>
-              <h1 className='text-sm text-textgray'>{releasedYear} • {formatRuntime(movie.runtime)}</h1>
-              <h1 className=''>"{movie.tagline}"</h1>
-
-              <span className='flex gap-2'>
-
-              <h1>{movie.vote_average.toFixed(1)}</h1>
-              <h1>IMDB Rating</h1>
-              </span>
-
-              </div>
-
           </div>
         ) : (
-          <div className="flex justify-center items-center w-full h-96">
-           <Spinner/>
-          </div>
+          isBackdropLoaded && !watchMovie ? (
+            <div className=" flex gap-5 z-10 w-full pl-12">
+              <img src={posterURL} className='w-30 rounded-lg' alt="" />
+              <div className='flex flex-col justify-center'>
+                <h1 className="text-xl font-bold">{movie.title}</h1>
+                <h1 className='text-sm text-textgray'>{releasedYear} • {formatRuntime(movie.runtime)}</h1>
+                <h1 className=''>"{movie.tagline}"</h1>
+                <span className='flex gap-2'>
+                  <h1>{movie.vote_average.toFixed(1)}</h1>
+                  <h1>IMDB Rating</h1>
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center w-full h-96">
+              <Spinner/>
+            </div>
+          )
         )}
-        
-
-
-
-
-
-
-
-
       </div>
-
-          <div className='text-white flex flex-col gap-2 px-5 mt-4'>
-
-{/* Watch now Button */}
-  
-      
-          <div className='flex flex-col md:flex-row gap-4'>
-
-
-              <div onClick={()=> setWatchMovie(true)} className='cursor-pointer flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300'>
-                <img src={icon} alt="YouTube" className='w-3 h-3' />
-                <h1 className='text-black font-semibold'>
-                 Watch Now </h1>
-              </div>
-
-
-              <div className='cursor-pointer flex flex-1 items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300'>
-                <Plus></Plus> 
-                <h1 className='text-white font-semibold'>Watchlist</h1>
-              </div>
-
+      {/* Watch now and other controls */}
+      <div className='text-white flex flex-col gap-2 px-5 mt-4'>
+        {/* Watch now Button */}
+        <div className='flex flex-col md:flex-row gap-4'>
+          <div onClick={()=> setWatchMovie(true)} className='cursor-pointer flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300'>
+            <img src={icon} alt="YouTube" className='w-3 h-3' />
+            <h1 className='text-black font-semibold'>
+              Watch Now </h1>
           </div>
-
-              <div>
-                <h1>{movie.overview}</h1>
-              </div>
-
-              <div className='flex flex-col gap-8'>
-
-
-              <div className='flex text-md font-semibold border-b-2 border-darksecondary'>
-
-                <button onClick={()=>setTab("overview")} className={tab == "overview" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Overview</button>
-                <button onClick={()=>setTab("cast")} className={tab == "cast" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Cast</button>
-                <button onClick={()=>setTab("reviews")} className={tab == "reviews" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Reviews</button>
-              </div>
-
-
+          <div className='cursor-pointer flex flex-1 items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300'>
+            <Plus></Plus> 
+            <h1 className='text-white font-semibold'>Watchlist</h1>
+          </div>
+        </div>
+        <div>
+          <h1>{movie.overview}</h1>
+        </div>
+        <div className='flex flex-col gap-8'>
+          <div className='flex text-md font-semibold border-b-2 border-darksecondary'>
+            <button onClick={()=>setTab("overview")} className={tab == "overview" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Overview</button>
+            <button onClick={()=>setTab("cast")} className={tab == "cast" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Cast</button>
+            <button onClick={()=>setTab("reviews")} className={tab == "reviews" ? `border-b-2 flex-1 p-2` :  `flex-1 p-2`}>Reviews</button>
+          </div>
           {tab === "overview" && (
             <div className='p-4 bg-linear-to-r from-[#0A0A0A] rounded-xl border-2 border-[#282727]'>
-                <h1 className='text-xl font-bold'>Movie Details</h1>
-
-                <span className='flex justify-between'>
-      
+              <h1 className='text-xl font-bold'>Movie Details</h1>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Release Date </h1>
                 <h1 className='text-white'>{movie.release_date}</h1>
-                </span>
-
-                <span className='flex justify-between'>
-      
+              </span>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Status</h1>
                 <h1 className='text-white'>{movie.status}</h1>
-                </span>
-
-                <span className='flex justify-between'>
-      
+              </span>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Runtime</h1>
                 <h1 className='text-white'>{formatRuntime(movie.runtime)}</h1>
-                </span>
-
-                <span className='flex justify-between'>
-      
+              </span>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Budget</h1>
                 <h1 className='text-white'>{formatMillions(movie.budget)}</h1>
-                </span>
-
-                <span className='flex justify-between'>
-      
+              </span>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Revenue</h1>
                 <h1 className='text-white'>{formatMillions(movie.revenue)}</h1>
-                </span>
-                <span className='flex justify-between'>
-      
+              </span>
+              <span className='flex justify-between'>
                 <h1 className='text-textgray'>Language</h1>
                 <h1 className='text-white'>{movie.original_language}</h1>
-                </span>
-              </div>
-              )}
-
-<div>
-                
-              </div>
-              </div>
-
+              </span>
+            </div>
+          )}
+          <div></div>
         </div>
+      </div>
       {/* Recommendations only after backdrop is loaded */}
-      {isBackdropLoaded && (
+      {isBackdropLoaded && !watchMovie && (
         <div className="all-movies text-white text-xl font-bold px-12">
           <h1>Recommended For You</h1>
           <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">

@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 
 const WatchMovie = ({id}) => {
   return (
-    <div className='flex justify-center w-full h-full mt-10 sm:mt-0'>
+    // <div className='flex justify-center w-full h-full mt-10 sm:mt-0'>
 <div className="aspect-video w-full">
   <iframe
     src={`https://vidlink.pro/movie/${id}`}
@@ -14,7 +14,7 @@ const WatchMovie = ({id}) => {
     title="Movie Player"
   />
 </div>
-    </div>
+    // </div>
   )
 }
 
