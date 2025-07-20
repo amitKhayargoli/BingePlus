@@ -6,7 +6,8 @@ import youtube from "/Youtube.png";
 import MovieCard from '../components/MovieCard';
 import LazyLoad from 'react-lazyload';
 import { Spinner } from '@material-tailwind/react';
-import { Plus, Star } from 'lucide-react';
+import { Plus, Star, Watch } from 'lucide-react';
+import WatchMovie from './WatchMovie';
 
 
 const API_BASE_URL = 'https://api.themoviedb.org/3';
@@ -32,6 +33,7 @@ const MovieDetails = () => {
   const[alternativeMovies,setAlternativeMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const[tab,setTab] = useState('overview');
+  const [watchMovie,setWatchMovie] = useState(false);
 
   const fetchMovie = async () => {
     try {
@@ -92,6 +94,9 @@ const MovieDetails = () => {
       setLogoUrl(null);
       setAlternativeMovies([]);
      setIsBackdropLoaded(false); 
+     setWatchMovie(null);
+    setposterURL(null);
+    setTab('overview');
 
     fetchMovie();
     getMovieLogoPath()
@@ -123,7 +128,7 @@ const MovieDetails = () => {
     <>
       <Navbar />
       {/* Preload background image to handle isBackdropLoaded */}
-      {backdropUrl && (
+      {backdropUrl  && (
         <img
           src={backdropUrl}
           alt="backdrop preload"
@@ -132,7 +137,7 @@ const MovieDetails = () => {
         />
       )}
       <div
-        className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:0 "
+        className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 "
         style={{
           backgroundImage: backdropUrl && isBackdropLoaded ? `url(${backdropUrl})` : undefined,
           backgroundSize: 'cover',
@@ -144,8 +149,13 @@ const MovieDetails = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
 
-        {/* inside image div */}
-        {isBackdropLoaded ? (
+
+
+        {
+          watchMovie==true ? (
+            <WatchMovie id={id} />
+          ): 
+            isBackdropLoaded && !watchMovie ? (
           <div className=" flex gap-5 z-10 w-full pl-12">
             {/* {!logoUrl ? (
               <img
@@ -173,16 +183,18 @@ const MovieDetails = () => {
 
               </div>
 
-
-            
-
-
           </div>
         ) : (
           <div className="flex justify-center items-center w-full h-96">
            <Spinner/>
           </div>
         )}
+        
+
+
+
+
+
 
 
 
@@ -194,15 +206,17 @@ const MovieDetails = () => {
   
       
           <div className='flex flex-col md:flex-row gap-4'>
-              <div className='flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300'>
+
+
+              <div onClick={()=> setWatchMovie(true)} className='cursor-pointer flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300'>
                 <img src={icon} alt="YouTube" className='w-3 h-3' />
                 <h1 className='text-black font-semibold'>
                  Watch Now </h1>
               </div>
 
 
-              <div className='flex flex-1 items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300'>
-                <Plus></Plus>
+              <div className='cursor-pointer flex flex-1 items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300'>
+                <Plus></Plus> 
                 <h1 className='text-white font-semibold'>Watchlist</h1>
               </div>
 

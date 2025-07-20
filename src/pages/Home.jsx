@@ -108,8 +108,6 @@ useEffect(() => {
  {/* {isBackdropLoaded && ( */}
 
   <>
-
-  
        <section className="all-movies px-5 mb-8 mt-3">
           <h2 className='md:text-2xl  text-xl text-white font-bold'>Trending Now</h2>
 
