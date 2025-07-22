@@ -9,7 +9,7 @@ const SearchAll = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [search,setSearch] = useState("");
-  const[movieList,setMovieList] = useState([]);
+  const[mediaList,setMediaList] = useState([]);
 
   useDebounce(()=> setDebouncedSearchTerm(search),600,[search]);
 const navigate = useNavigate();
@@ -43,7 +43,7 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
 
       if (data.Response === 'False') {
         setErrorMessage(data.Error);
-        setMovieList([]);
+        setMediaList([]);
         return;
       }
 
@@ -57,7 +57,7 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
 
       return isValidType && isValidLanguage && hasValidTitle && hasValidOverview && hasValidPoster;
     });
-      setMovieList(filteredResults || []);
+      setMediaList(filteredResults || []);
 
     } catch (error) {
       console.error(`Error fetching movies:`, error);
@@ -107,12 +107,19 @@ const API_BASE_URL = 'https://api.themoviedb.org/3';
       (
         // Movies List
         <ul className='grid grid-cols-1 gap-3 gap-y-20 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5;'>
-          {movieList.map((movie) =>( 
-            <MovieCard 
-            key={movie.id}
-            movie={movie}
-            onClick={()=>navigate(`/movies/${movie.id}`)}/>
-          ))}
+{mediaList.map((media) => (
+  <MovieCard 
+    key={media.id}
+    movie={media}
+    onClick={() => {
+      if (media.media_type === 'movie') {
+        navigate(`/movies/${media.id}`);
+      } else if (media.media_type === 'tv') {
+        navigate(`/tv/${media.id}`);
+      }
+    }}
+  />
+))}
           
 
           </ul>

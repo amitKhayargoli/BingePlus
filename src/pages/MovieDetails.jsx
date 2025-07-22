@@ -122,7 +122,7 @@ const MovieDetails = () => {
   const formatMillions = (num) => {
   if (!num || num === 0) return 'N/A';
   return `$${(num / 1_000_000).toFixed(0)}M`;
-};
+  };
 
   return (
     <>
@@ -147,8 +147,8 @@ const MovieDetails = () => {
       >
         {/* Gradient overlays */}
         {(!watchMovie) && <>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent pointer-events-none" />
         </>}
 
         {/* Backdrop area: either video or details */}
@@ -234,21 +234,21 @@ const MovieDetails = () => {
       </div>
       {/* Recommendations only after backdrop is loaded */}
       {isBackdropLoaded && !watchMovie && (
-        <div className="all-movies text-white text-xl font-bold px-12">
-          <h1>Recommended For You</h1>
-          <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
-            {alternativeMovies.slice(0, 5).map((movie) => (
-              <img
-                key={movie.id}
-                loading="lazy"
-                className="rounded-lg cursor-pointer"
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                onClick={() => navigate(`/movies/${movie.id}`)}
-              />
-            ))}
-          </ul>
-        </div>
-      )}
+  <div className="all-movies text-white text-xl font-bold px-12">
+    <h1>Recommended For You</h1>
+    <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
+      {alternativeMovies.slice(0, 5).map((movie) => (
+        <img 
+          key={movie.id}
+          loading="lazy"
+          className="rounded-lg cursor-pointer"
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          onClick={() => navigate(`/movies/${movie.id}`)}
+        />
+      ))}
+    </ul>
+  </div>
+)}
     </>
   );
 };
