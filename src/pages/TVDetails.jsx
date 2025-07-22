@@ -28,16 +28,22 @@ const TVDetails = () => {
   const [error, setError] = useState(null);
   const [alternativeShows, setAlternativeShows] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [seasons, setSeasons] = useState([]);
+  const [selectedSeason, setSelectedSeason] = useState(null);
+  const [episodes, setEpisodes] = useState([]);
 
   const fetchShow = async () => {
     try {
       setIsLoading(true);
       const response = await fetch(`${API_BASE_URL}/tv/${id}`, API_OPTIONS);
       const data = await response.json();
+      // Filter out specials (season_number === 0)
+      const filteredSeasons = (data.seasons || []).filter(s => s.season_number !== 0);
+      setSeasons(filteredSeasons);
+      setSelectedSeason(filteredSeasons.length > 0 ? filteredSeasons[0].season_number : null);
 
       const response2 = await fetch(`${API_BASE_URL}/tv/${id}/recommendations`, API_OPTIONS);
       const data2 = await response2.json();
-
       setAlternativeShows(data2.results || []);
       setShow(data);
     } catch (err) {
@@ -68,13 +74,29 @@ const TVDetails = () => {
     }
   };
 
+  const fetchEpisodes = async (seasonNumber) => {
+    if (!seasonNumber) return;
+    try {
+      setIsLoading(true);
+      const response = await fetch(`${API_BASE_URL}/tv/${id}/season/${seasonNumber}`, API_OPTIONS);
+      const data = await response.json();
+      setEpisodes(data.episodes || []);
+    } catch (err) {
+      setEpisodes([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     setShow(null);
     setBackdropUrl(null);
     setLogoUrl(null);
     setAlternativeShows([]);
     setIsBackdropLoaded(false);
-
+    setSeasons([]);
+    setSelectedSeason(null);
+    setEpisodes([]);
     fetchShow();
     getShowLogoPath()
       .then((url) => {
@@ -82,6 +104,12 @@ const TVDetails = () => {
       })
       .catch(() => {});
   }, [id]);
+
+  useEffect(() => {
+    if (selectedSeason) {
+      fetchEpisodes(selectedSeason);
+    }
+  }, [selectedSeason, id]);
 
   if (!show) return <p>Loading...</p>;
 
@@ -175,7 +203,7 @@ const TVDetails = () => {
         )}
       </div>
 
-      <div className='px-10 md:px-15 lg:px-20 text-white flex flex-col gap-5'>
+      <div className='px-10 md:px-15 lg:px-20 text-white flex flex-col gap-5 mt-10'>
         <div className='flex gap-5'>
         <h1 className='text-white text-lg md:text-2xl font-semibold  border-b-3'>Episodes</h1>
         <h1 className='text-white text-lg  md:text-2xl font-semibold  '>Details</h1>
@@ -183,20 +211,29 @@ const TVDetails = () => {
         </div>
         <div className='text-white md:text-lg font-bold flex flex-wrap md:flex-row items-center gap-4'>
           <h1>Select Season:</h1>
-
-          <button className='text-black p-3 bg-[#ffffff] rounded-lg font-semibold '>Season 1</button>
-          <button className='text-white p-3 bg-[#333333] rounded-lg font-semibold'>Season 2</button>
-          <button className='text-white p-3 bg-[#333333] rounded-lg font-semibold'>Season 3</button>
-          <button className='text-white p-3 bg-[#333333] rounded-lg font-semibold'>Season 4</button>
-          <button className='text-white p-3 bg-[#333333] rounded-lg font-semibold'>Season 5</button>
+          {seasons.map((season) => (
+            <button
+              key={season.id}
+              className={
+                selectedSeason === season.season_number
+                  ? 'text-black p-3 bg-[#ffffff] rounded-lg font-semibold'
+                  : 'text-white p-3 bg-[#333333] rounded-lg font-semibold'
+              }
+              onClick={() => setSelectedSeason(season.season_number)}
+            >
+              {season.name}
+            </button>
+          ))}
         </div>
 
         <div className='bg-darksecondary w-full p-4 rounded-lg flex flex-col items-center '>
-
           <div className='flex items-center justify-between w-full'>
-
-            <h1 className='text-white text-lg font-bold'>Season 1</h1>
-            <h1 className='text-textgray'>4 episodes</h1>
+            <h1 className='text-white text-lg font-bold'>
+              {seasons.find((s) => s.season_number === selectedSeason)?.name || 'Season'}
+            </h1>
+            <h1 className='text-textgray'>
+              {episodes.length} episode{episodes.length !== 1 ? 's' : ''}
+            </h1>
           </div>
 
             {/* Progress */}
@@ -208,13 +245,12 @@ const TVDetails = () => {
             
         </div>
 
-          <div className='flex gap-2 flex-wrap lg:flex-nowrap'>
+          <div className='flex gap-2 flex-wrap'>
 
-        <Episodes show={show} />
-        <Episodes show={show} />
-        <Episodes show={show} />
-        <Episodes show={show} />
-          </div>
+        {episodes.map((ep) => (
+            <Episodes key={ep.id} episode={ep} show={show} />
+          ))}
+        </div>
         
               {isBackdropLoaded && (
         <div className="all-movies text-white text-xl font-bold">
