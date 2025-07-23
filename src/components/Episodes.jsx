@@ -40,7 +40,7 @@ const Episodes = ({ episode, show }) => {
           {episode.air_date && <>• {episode.air_date}</>}
         </div>
         <p className="text-[#b0b0b0] text-xs md:text-sm mt-2 break-words">
-          {episode.overview || "No description available."}
+          {episode.overview.slice(0, 60) + "..." || "No description available."}
         </p>
       </div>
     </div>
