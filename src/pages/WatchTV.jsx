@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Episodes from "../components/Episodes";
+import { Helmet } from "react-helmet";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -21,6 +22,7 @@ const WatchTV = () => {
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [selectedEpisode, setSelectedEpisode] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // For S1.E1 label
   const [currentLabel, setCurrentLabel] = useState("");
@@ -49,7 +51,7 @@ const WatchTV = () => {
     );
     const data = await response.json();
     setEpisodes(data.episodes || []);
-    // Auto-select first episode if none selected
+
     if (!selectedEpisode && data.episodes && data.episodes.length > 0) {
       setSelectedEpisode(data.episodes[0]);
     }
@@ -86,12 +88,41 @@ const WatchTV = () => {
     }
   }, [selectedSeason, selectedEpisode]);
 
+  // useEffect(() => {
+  //     document.body.style.overflow = 'hidden';
+  // }, [sidebarOpen]);
+
   return (
     <>
+      <Helmet>
+        <title>{`Watch ${show?.name || ''} Season ${selectedSeason || ''}`}</title>
+        <meta property="og:title" content={`Watch ${show?.name || ''} Season ${selectedSeason || ''}`} />
+        <meta property="og:description" content={`Stream ${show?.name || ''} Season ${selectedSeason || ''} online for free!`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={window.location.href} />
+      </Helmet>
       <Navbar />
-      <div className="flex h-[calc(100vh-64px)] mt-20 md:mt-0 flex-wrap">
+      <div className="flex h-[calc(100vh-64px)] md:mt-0 flex-wrap relative overflow-hidden">
+        {/* Overlay for mobile when sidebar is open */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
         {/* Left: Video Player */}
-        <div className="flex-grow bg-black flex h-100 items-center justify-center flex-col">
+        <div
+          className={`${sidebarOpen ? 'md:mr-80' : ''} flex-grow bg-black flex items-center justify-center flex-col transition-all duration-300 w-full`}
+        >
+          {/* Sidebar Toggle Button (always visible) */}
+          {!sidebarOpen && (
+            <button
+              className="fixed top-15 right-2 z-50 bg-[#232323] text-white px-3 py-2 rounded-lg shadow-lg"
+              onClick={() => setSidebarOpen(true)}
+            >
+              Show Episodes
+            </button>
+          )}
           {/* Currently Watching Label */}
           {selectedEpisode && (
             <div className="w-full h-full flex flex-col items-center">
@@ -105,8 +136,17 @@ const WatchTV = () => {
           )}
         </div>
 
-        {/* Right: Episodes List */}
-        <div className="w-full md:max-w-md bg-black flex flex-col h-full md:overflow-y-auto p-3 hide-scrollbar">
+        {/* Right: Episodes List (Collapsible Sidebar) */}
+        <div
+          className={`fixed top-0 right-0 h-full w-90 max-w-full bg-black flex flex-col overflow-y-auto p-3 hide-scrollbar z-40 transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          {/* Collapse Button (always visible) */}
+          <button
+            className="absolute top-4 right-2 z-50 bg-[#232323] text-white px-2 py-1 rounded-lg shadow-lg"
+            onClick={() => setSidebarOpen(false)}
+          >
+            Close
+          </button>
           <h1 className="text-2xl font-bold text-white mb-4">Episodes</h1>
           <div className="flex flex-wrap gap-2 mb-4">
             {seasons.map((season) => (
