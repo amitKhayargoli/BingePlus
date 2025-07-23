@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @theme {
   --color-primary: #000000;
   --color-darksecondary: #111111;
@@ -25,15 +25,12 @@
   --background-image-hero-pattern: url("/hero-bg.png");
 }
 
-
-
 @layer base {
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
     background: #000000;
   }
-
 
   main {
     @apply min-h-screen relative bg-primary;
@@ -49,7 +46,6 @@
 }
 
 @layer components {
-
   .all-movies {
     @apply space-y-2;
 
@@ -97,7 +93,6 @@
   }
 }
 
-
 @utility text-gradient {
   @apply font-bold bg-gradient-to-r from-white to-[#3c3c3c] bg-clip-text text-transparent;
 }
@@ -121,14 +116,13 @@
   }
 }
 
-span h1{
+span h1 {
   font-size: 16px;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: white;      
-  font-size: 20px !important;      
-  font-weight: bold;    
+  color: white;
+  font-size: 20px !important;
+  font-weight: bold;
 }
-
