@@ -9,14 +9,14 @@ const Episodes = ({ episode, show }) => {
         <img
           src={
             episode.still_path
-              ? `https://image.tmdb.org/t/p/w300/${episode.still_path}`
+              ? `https://image.tmdb.org/t/p/original/${episode.still_path}`
               : show && show.poster_path
-                ? `https://image.tmdb.org/t/p/w300/${show.poster_path}`
+                ? `https://image.tmdb.org/t/p/original/${show.poster_path}`
                 : ""
           }
           alt={episode.name}
-          // max-w-[150px] h-[120px]
-          className="rounded-lg w-full  object-cover border border-[#232323] mb-2"
+        
+          className="rounded-lg w-full   max-w-[300px] object-cover border border-[#232323] mb-2"
         />
  
       </div>
