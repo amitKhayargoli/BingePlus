@@ -138,7 +138,7 @@ const WatchTV = () => {
 
         {/* Right: Episodes List (Collapsible Sidebar) */}
         <div
-          className={`fixed top-0 right-0 h-full w-90 max-w-full bg-black flex flex-col overflow-y-auto p-3 hide-scrollbar z-40 transition-transform duration-300 transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`fixed bg-linear-to-b from-[#181818] top-0 right-0 h-full w-90 hover:w-120 max-w-full bg-black flex flex-col overflow-y-auto p-3 hide-scrollbar z-40 transition-all duration-300 transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           {/* Collapse Button (always visible) */}
           <button

@@ -15,7 +15,8 @@ const Episodes = ({ episode, show }) => {
                 : ""
           }
           alt={episode.name}
-          className="rounded-lg w-full max-w-[150px] h-[120px] object-cover border border-[#232323] mb-2"
+          // max-w-[150px] h-[120px]
+          className="rounded-lg w-full  object-cover border border-[#232323] mb-2"
         />
  
       </div>
