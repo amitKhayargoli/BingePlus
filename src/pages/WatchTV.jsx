@@ -101,11 +101,11 @@ const WatchTV = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.href} />
       </Helmet>
-      <Navbar />
-      <div className="flex h-[calc(100vh-64px)] md:mt-0 flex-wrap relative overflow-hidden">
+      {/* <Navbar />   */}
+      <div className="flex h-[100vh] md:mt-0 flex-wrap relative overflow-hidden">
         {/* Overlay for mobile when sidebar is open */}
         {sidebarOpen && (
-          <div
+          <div  
             className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
@@ -117,7 +117,7 @@ const WatchTV = () => {
           {/* Sidebar Toggle Button (always visible) */}
           {!sidebarOpen && (
             <button
-              className="fixed top-15 right-2 z-50 bg-[#232323] text-white px-3 py-2 rounded-lg shadow-lg"
+              className="fixed top-0 right-0 z-50 bg-[#232323] text-white px-3 py-2 rounded-md"
               onClick={() => setSidebarOpen(true)}
             >
               Show Episodes
@@ -142,7 +142,7 @@ const WatchTV = () => {
         >
           {/* Collapse Button (always visible) */}
           <button
-            className="absolute top-4 right-2 z-50 bg-[#232323] text-white px-2 py-1 rounded-lg shadow-lg"
+            className="absolute top-2 right-2 z-50 bg-[#232323] text-white px-2 py-1 rounded-md shadow-lg"
             onClick={() => setSidebarOpen(false)}
           >
             Close
