@@ -129,7 +129,7 @@ const WatchTV = () => {
               <iframe
                 src={`https://vidlink.pro/tv/${id}/${selectedSeason}/${selectedEpisode.episode_number}?secondaryColor=a2a2a2&iconColor=eefdec&icons=default&player=default&title=true&poster=true&autoplay=true&nextbutton=true`}
                 allowFullScreen
-                className="w-full h-full rounded-lg border-none"
+                className="w-full h-full border-none"
                 title={selectedEpisode.name}
               />
             </div>
