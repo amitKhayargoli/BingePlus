@@ -10,18 +10,13 @@
   --color-secondary: #ffffff;
 
   --color-textgray: #737373;
-
   --color-light-100: #cecefb;
   --color-light-200: #a8b5db;
-
   --color-gray-100: #9ca4ab;
-
   --color-dark-100: #0f0d23;
-
   --font-inter: Inter;
 
   --breakpoint-xs: 480px;
-
   --background-image-hero-pattern: url("/hero-bg.png");
 }
 
