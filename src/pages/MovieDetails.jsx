@@ -142,7 +142,7 @@ const MovieDetails = () => {
         />
       )}
       <div
-        className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 "
+        className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 h-[80vh] w-full"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded && !watchMovie
@@ -170,11 +170,11 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className=" flex gap-5 z-10 w-full pl-12">
-            <img src={posterURL} className="w-30 rounded-lg" alt="" />
-            <div className="flex flex-col justify-center">
-              <h1 className="text-xl font-bold">{movie.title}</h1>
-              <h1 className="text-sm text-textgray">
+          <div className="flex gap-8 z-10 h-full w-full pl-25 mt-20">
+            <img src={posterURL} className="w-60 h-80 rounded-lg" alt="" />
+            <div className="flex flex-col gap-3">
+              <h1 className="text-4xl font-bold">{movie.title}</h1>
+              <h1 className="text-sm text-white">
                 {releasedYear} • {formatRuntime(movie.runtime)}
               </h1>
               <h1 className="">"{movie.tagline}"</h1>
@@ -182,6 +182,21 @@ const MovieDetails = () => {
                 <h1>{movie.vote_average.toFixed(1)}</h1>
                 <h1>IMDB Rating</h1>
               </span>
+               <h1 className="w-3/5 hidden md:flex">{movie.overview}</h1>
+
+               <div className="md:flex flex-col md:flex-row gap-4 hidden ">
+          <div
+            onClick={() => setWatchMovie(true)}
+            className="cursor-pointer flex  items-center justify-center gap-2 bg-white px-6 rounded-lg transition duration-300"
+          >
+            <img src={icon} alt="YouTube" className="w-3 h-3" />
+            <h1 className="text-black font-medium">Watch Now </h1>
+          </div>
+          <div className="cursor-pointer flex items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
+            <Plus></Plus>
+            <h1 className="text-white font-medium">Add to Watchlist</h1>
+          </div>
+        </div>
             </div>
           </div>
         ) : (
@@ -191,9 +206,9 @@ const MovieDetails = () => {
         )}
       </div>
       {/* Watch now and other controls */}
-      <div className="text-white flex flex-col gap-2 px-5 mt-4">
+      <div className="text-white flex flex-col gap-2 px-5 mt-4 ">
         {/* Watch now Button */}
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 md:hidden">
           <div
             onClick={() => setWatchMovie(true)}
             className="cursor-pointer flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300"
@@ -207,7 +222,7 @@ const MovieDetails = () => {
           </div>
         </div>
         <div>
-          <h1>{movie.overview}</h1>
+          <h1 className="md:hidden">{movie.overview}</h1>
         </div>
         <div className="flex flex-col gap-8">
           <div className="flex text-md font-semibold border-b-2 border-darksecondary">
