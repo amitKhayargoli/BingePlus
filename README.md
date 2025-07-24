@@ -3,8 +3,6 @@
 
 A fully responsive movie streaming website built using **React**, **Tailwind CSS**, and **The Movie Database (TMDB) API**. Browse trending movies, view detailed information, and enjoy a sleek, modern UI optimized for all screen sizes.
 
-<img width="3072" height="1920" alt="image" src="https://github.com/user-attachments/assets/f70adbb4-f486-4559-8292-c418d0cea846" />
-
 ---
 
 ## 🚀 Features
@@ -34,6 +32,8 @@ A fully responsive movie streaming website built using **React**, **Tailwind CSS
 git clone https://github.com/amitKhayargoli/BingePlus.git
 cd react-streaming-app
 ````
+
+<img width="3072" height="1920" alt="image" src="https://github.com/user-attachments/assets/f70adbb4-f486-4559-8292-c418d0cea846" />
 
 2. **Install dependencies**
 
