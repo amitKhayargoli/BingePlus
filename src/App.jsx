@@ -4,18 +4,22 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import MovieList from "./pages/MovieList";
-import MovieDetails from "./pages/MovieDetails";
-import Home from "./pages/Home";
-import WatchMovie from "./pages/WatchMovie";
-import SearchAll from "./components/SearchAll";
-import TVShows from "./pages/TVShows";
-import TVDetails from "./pages/TVDetails";
-import WatchTV from "./pages/WatchTV";
+import {Suspense, lazy } from "react";
+import { Spinner } from "@material-tailwind/react";
+
+const MovieList = lazy(() => import("./pages/MovieList"));
+const MovieDetails = lazy(() => import("./pages/MovieDetails"));
+const Home = lazy(() => import("./pages/Home"));
+const WatchMovie = lazy(() => import("./pages/WatchMovie"));
+const SearchAll = lazy(() => import("./components/SearchAll"));
+const TVShows = lazy(() => import("./pages/TVShows"));
+const TVDetails = lazy(() => import("./pages/TVDetails"));
+const WatchTV = lazy(() => import("./pages/WatchTV"));
 
 const App = () => {
   return (
     <Router>
+      <Suspense fallback={<Spinner/>}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<MovieList />} />
@@ -26,6 +30,7 @@ const App = () => {
         <Route path="/tv/:id" element={<TVDetails />} />
         <Route path="/watchshow/:id" element={<WatchTV />} />
       </Routes>
+    </Suspense>
     </Router>
   );
 };
