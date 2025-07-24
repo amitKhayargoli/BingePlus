@@ -170,8 +170,8 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className="flex gap-8 z-10 h-full w-full pl-25 mt-20">
-            <img src={posterURL} className="w-60 h-80 rounded-lg" alt="" />
+          <div className="flex gap-8 z-10 h-80 w-full pl-25 mt-20">
+            <img src={posterURL} className="w-55 rounded-lg" alt="" />
             <div className="flex flex-col gap-3">
               <h1 className="text-4xl font-bold">{movie.title}</h1>
               <h1 className="text-sm text-white">
