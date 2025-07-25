@@ -142,7 +142,7 @@ const MovieDetails = () => {
         />
       )}
       <div
-        className="movie-details text-[var(--text-secondary)] flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 h-[80vh] w-full"
+        className="movie-details text-[var(--text-secondary)] flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 md:h-[80vh] w-full"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded && !watchMovie
@@ -170,7 +170,7 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className="flex gap-8 z-10 h-50 md:h-80 w-full pl-5 md:pl-25 mt-20 text-[var(--secondary)]">
+          <div className="flex gap-2 md:gap-8 z-10 h-45 md:h-80 w-full pl-5 md:pl-25 mt-20 text-[var(--secondary)]">
             <img src={posterURL} className="w-30 md:w-55 rounded-lg" alt="" />
             <div className="flex flex-col gap-3">
               <h1 className="md:text-4xl font-bold">{movie.title}</h1>

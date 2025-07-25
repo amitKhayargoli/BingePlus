@@ -88,7 +88,7 @@ const Navbar = () => {
 
       {/* Mobile Header*/}
 
-      <div className="flex justify-between fixed z-50 top-0 left-0 right-0 md:hidden bg-black px-5 py-3">
+      <div className="flex justify-between fixed z-50 top-0 left-0 right-0 md:hidden bg-[var(--primary)] px-5 py-3">
         <li className="cursor-pointer text-sm gray-gradient flex items-center">
           <Bookmark
             className="w-[18 px] h-[20px] text-[var(--text-primary)]"
