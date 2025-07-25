@@ -153,7 +153,7 @@ const TVDetails = () => {
         />
       )}
       <div
-        className="overflow-hidden mt-10 md:mt-0 movie-details text-white flex flex-col justify-center items-center relative min-h-[60vh] md:min-h-[80vh] py-14 md:py-0"
+        className="overflow-hidden mt-10 md:mt-0 movie-details text-[var(--text-primary)] flex flex-col justify-center items-center relative min-h-[60vh] md:min-h-[80vh] py-14 md:py-0"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded ? `url(${backdropUrl})` : undefined,
@@ -190,14 +190,14 @@ const TVDetails = () => {
                       `/watchshow/${id}/${selectedSeason}/${episodes[0].episode_number}`
                     )
                   }
-                  className="cursor-pointer flex p-3 bg-white text-black font-semibold rounded-lg items-center"
+                  className="cursor-pointer flex p-3 bg-[var(--secondary)] text-black font-semibold rounded-lg items-center"
                 >
                   <img className="w-3 mr-2" src={icon} alt="Watch Icon" />
                   <h1 className="text-sm">Watch Now</h1>
                 </div>
-                <div className="cursor-pointer flex p-3 bg-black text-white font-semibold rounded-lg items-center">
+                <div className="cursor-pointer flex p-3 bg-black text-[var(--text-primary)] font-semibold rounded-lg items-center">
                   {/* <img className="w-5 mr-2" src={youtube} alt="YouTube Icon" /> */}
-                  <Plus className="text-white w-5 mr-2" />
+                  <Plus className="text-[var(--text-primary)] w-5 mr-2" />
                   <h1 className="text-sm">Watchlist</h1>
                 </div>
               </div>
@@ -223,27 +223,27 @@ const TVDetails = () => {
         )}
       </div>
 
-      <div className="px-10 md:px-15 lg:px-20 text-white flex flex-col gap-5 mt-10">
+      <div className="px-10 md:px-15 lg:px-20 text-[var(--text-primary)] flex flex-col gap-5 mt-10">
         <div className="flex gap-5">
-          <h1 className="text-white text-lg md:text-2xl font-semibold  border-b-3">
+          <h1 className="text-[var(--text-primary)] text-lg md:text-2xl font-semibold  border-b-3">
             Episodes
           </h1>
-          <h1 className="text-white text-lg  md:text-2xl font-semibold  ">
+          <h1 className="text-[var(--text-primary)] text-lg  md:text-2xl font-semibold  ">
             Details
           </h1>
-          <h1 className="text-white text-lg  md:text-2xl font-semibold  ">
+          <h1 className="text-[var(--text-primary)] text-lg  md:text-2xl font-semibold  ">
             Cast & Crew
           </h1>
         </div>
-        <div className="text-white md:text-lg font-bold flex flex-wrap md:flex-row items-center gap-4">
-          <h1>Select Season:</h1>
+        <div className="text-[var(--text-primary)] md:text-lg font-bold flex flex-wrap md:flex-row items-center gap-4">
+          <h1 className="text-[var(--text-primary)]">Select Season:</h1>
           {seasons.map((season) => (
             <button
               key={season.id}
               className={
                 selectedSeason === season.season_number
                   ? "text-black p-3 bg-[var(--season-active)] rounded-lg font-semibold"
-                  : "text-white p-3 bg-[var(--season-inactive)] rounded-lg font-semibold"
+                  : "text-[var(--text-primary)] p-3 bg-[var(--season-inactive)] rounded-lg font-semibold"
               }
               onClick={() => setSelectedSeason(season.season_number)}
             >
@@ -252,13 +252,13 @@ const TVDetails = () => {
           ))}
         </div>
 
-        <div className="bg-darksecondary w-full p-4 rounded-lg flex flex-col items-center ">
+        <div className="bg-[var(--card)] w-full p-4 rounded-lg flex flex-col items-center ">
           <div className="flex items-center justify-between w-full">
-            <h1 className="text-white text-lg font-bold">
+            <h1 className="text-[var(--text-primary)] text-lg font-bold">
               {seasons.find((s) => s.season_number === selectedSeason)?.name ||
                 "Season"}
             </h1>
-            <h1 className="text-textgray">
+            <h1 className="">
               {episodes.length} episode{episodes.length !== 1 ? "s" : ""}
             </h1>
           </div>
@@ -281,7 +281,7 @@ const TVDetails = () => {
         </div>
 
         {isBackdropLoaded && (
-          <div className="all-movies text-white text-xl font-bold">
+          <div className="all-movies text-[var(--text-primary)] text-xl font-bold">
             <h1>Recommended For You</h1>
             <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
               {alternativeShows.slice(0, 5).map((tv) => (

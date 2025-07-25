@@ -59,8 +59,8 @@
   --text-primary: #3793b7; /* Main text color: deeper sky blue for contrast */
   --text-secondary: #71c9ce; /* Secondary text: lighter sky blue */
 
-  --button-primary: #3793b7; /* Primary button: deeper sky blue */
-  --button-secondary: #e3fdfd; /* Secondary button: very light blue */
+  --button-primary: #0f93ff; /* Primary button: deeper sky blue */
+  --button-secondary: #ffffff; /* Secondary button: very light blue */
 
   --movie-cardbtn-primary: #3793b7;
   --movie-card-secondary: #71c9ce;
@@ -68,8 +68,7 @@
   --season-active: #3793b7;
   --season-inactive: #71c9ce;
 
-  --watch-tv-sidebar-fg: #cbf1f5;
-
+  --watch-tv-sidebar-fg: #408ad955;
   --maintab-border: #e3fdfd;
 }
 

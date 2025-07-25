@@ -169,10 +169,7 @@ const WatchTV = () => {
                     ? "text-black px-4 py-2 bg-[var(--season-active)] rounded-lg font-semibold"
                     : "text-white px-4 py-2 bg-[var(--season-inactive)] rounded-lg font-semibold"
                 }
-                onClick={() => {
-                  setSelectedSeason(season.season_number);
-                  setSelectedEpisode(null);
-                }}
+                onClick={() => handleSeasonSelect(season.season_number)}
               >
                 {season.name}
               </button>
@@ -180,7 +177,7 @@ const WatchTV = () => {
           </div>
           <div className="flex flex-col gap-2">
             {episodes.map((ep) => (
-              <div key={ep.id} onClick={() => setSelectedEpisode(ep)}>
+              <div key={ep.id} onClick={() => handleEpisodeSelect(ep)}>
                 <Episodes episode={ep} show={show} season={selectedSeason} />
               </div>
             ))}

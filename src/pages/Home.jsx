@@ -12,6 +12,7 @@ import { Navigation } from "swiper/modules";
 import icon from "/icon.png";
 import info from "/Info.png";
 import CardSlider from "../components/CardSlider";
+import { Info } from "lucide-react";
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -137,9 +138,9 @@ const Home = () => {
             </div>
             <div
               onClick={() => navigate("/movies/986056")}
-              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--button-secondary)] text-white font-semibold rounded-xl items-center"
+              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--primary)] text-[var(--secondary)] font-semibold rounded-xl items-center gap-2"
             >
-              <img className="w-[20px] h-[20px] mx-2" src={info} alt="" />
+              <Info />
               <h1>Details</h1>
             </div>
           </div>
