@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Episodes from "../components/Episodes";
 import { Helmet } from "react-helmet";
@@ -16,7 +16,8 @@ const API_OPTIONS = {
 };
 
 const WatchTV = () => {
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { id, season, ep } = useParams();
   const [show, setShow] = useState(null);
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
@@ -33,12 +34,12 @@ const WatchTV = () => {
     const data = await response.json();
     // Filter out specials
     const filteredSeasons = (data.seasons || []).filter(
-      (s) => s.season_number !== 0,
+      (s) => s.season_number !== 0
     );
     setShow(data);
     setSeasons(filteredSeasons);
     setSelectedSeason(
-      filteredSeasons.length > 0 ? filteredSeasons[0].season_number : null,
+      filteredSeasons.length > 0 ? filteredSeasons[0].season_number : null
     );
   };
 
@@ -47,7 +48,7 @@ const WatchTV = () => {
     if (!seasonNumber) return;
     const response = await fetch(
       `${API_BASE_URL}/tv/${id}/season/${seasonNumber}`,
-      API_OPTIONS,
+      API_OPTIONS
     );
     const data = await response.json();
     setEpisodes(data.episodes || []);
@@ -55,6 +56,26 @@ const WatchTV = () => {
     if (!selectedEpisode && data.episodes && data.episodes.length > 0) {
       setSelectedEpisode(data.episodes[0]);
     }
+  };
+
+  const updateUrl = (newSeason, newEp) => {
+    navigate(`/watchshow/${id}/${newSeason}/${newEp}`, { replace: true });
+  };
+
+  const handleSeasonSelect = (seasonNumber) => {
+    setSelectedSeason(seasonNumber);
+    setSelectedEpisode(null);
+
+    if (episodes.length > 0) {
+      updateUrl(seasonNumber, episodes[0].episode_number);
+    } else {
+      updateUrl(seasonNumber, 1);
+    }
+  };
+  // When selecting an episode
+  const handleEpisodeSelect = (epObj) => {
+    setSelectedEpisode(epObj);
+    updateUrl(selectedSeason, epObj.episode_number);
   };
 
   useEffect(() => {
@@ -73,31 +94,22 @@ const WatchTV = () => {
       episodes.length > 0 &&
       (!selectedEpisode || !episodes.find((e) => e.id === selectedEpisode.id))
     ) {
-      setSelectedEpisode(episodes[0]);
+      setSelectedEpisode(ep);
     }
   }, [episodes]);
-
-  // Update the S1.E1 label whenever selectedSeason or selectedEpisode changes
-  useEffect(() => {
-    if (selectedSeason && selectedEpisode) {
-      setCurrentLabel(
-        `S${selectedSeason}.E${selectedEpisode.episode_number}`
-      );
-    } else {
-      setCurrentLabel("");
-    }
-  }, [selectedSeason, selectedEpisode]);
-
-  // useEffect(() => {
-  //     document.body.style.overflow = 'hidden';
-  // }, [sidebarOpen]);
 
   return (
     <>
       <Helmet>
-        <title>{`Watch ${show?.name || ''} Season ${selectedSeason || ''}`}</title>
-        <meta property="og:title" content={`Watch ${show?.name || ''} Season ${selectedSeason || ''}`} />
-        <meta property="og:description" content={`Stream ${show?.name || ''} Season ${selectedSeason || ''} online for free!`} />
+        <title>{`Watch ${show?.name || ""} Season ${selectedSeason || ""}`}</title>
+        <meta
+          property="og:title"
+          content={`Watch ${show?.name || ""} Season ${selectedSeason || ""}`}
+        />
+        <meta
+          property="og:description"
+          content={`Stream ${show?.name || ""} Season ${selectedSeason || ""} online for free!`}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.href} />
       </Helmet>
@@ -105,14 +117,14 @@ const WatchTV = () => {
       <div className="flex h-[100vh] md:mt-0 flex-wrap relative overflow-hidden">
         {/* Overlay for mobile when sidebar is open */}
         {sidebarOpen && (
-          <div  
+          <div
             className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
         {/* Left: Video Player */}
         <div
-          className={`${sidebarOpen ? 'md:mr-80' : ''} flex-grow bg-black flex items-center justify-center flex-col transition-all duration-300 w-full`}
+          className={`${sidebarOpen ? "md:mr-80" : ""} flex-grow bg-black flex items-center justify-center flex-col transition-all duration-300 w-full`}
         >
           {/* Sidebar Toggle Button (always visible) */}
           {!sidebarOpen && (
@@ -127,7 +139,7 @@ const WatchTV = () => {
           {selectedEpisode && (
             <div className="w-full h-full flex flex-col items-center">
               <iframe
-                src={`https://vidlink.pro/tv/${id}/${selectedSeason}/${selectedEpisode.episode_number}?secondaryColor=a2a2a2&iconColor=eefdec&icons=default&player=default&title=true&poster=true&autoplay=true&nextbutton=true`}
+                src={`https://vidlink.pro/tv/${id}/${season}/${ep}?secondaryColor=a2a2a2&iconColor=eefdec&icons=default&player=default&title=true&poster=true&autoplay=true&nextbutton=true`}
                 allowFullScreen
                 className="w-full h-full border-none"
                 title={selectedEpisode.name}
@@ -138,7 +150,7 @@ const WatchTV = () => {
 
         {/* Right: Episodes List (Collapsible Sidebar) */}
         <div
-          className={`fixed bg-linear-to-b from-[#181818] top-0 right-0 h-full w-90 hover:w-120 max-w-full bg-black flex flex-col overflow-y-auto p-3 hide-scrollbar z-40 transition-all duration-300 transform ${sidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`fixed bg-linear-to-b from-[#181818] top-0 right-0 h-full w-90 hover:w-120 max-w-full bg-black flex flex-col overflow-y-auto p-3 hide-scrollbar z-40 transition-all duration-300 transform ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           {/* Collapse Button (always visible) */}
           <button
