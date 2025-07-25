@@ -185,7 +185,11 @@ const TVDetails = () => {
 
               <div className="flex gap-4">
                 <div
-                  onClick={() => navigate(`/watchshow/${id}/2/1`)}
+                  onClick={() =>
+                    navigate(
+                      `/watchshow/${id}/${selectedSeason}/${episodes[0].episode_number}`
+                    )
+                  }
                   className="cursor-pointer flex p-3 bg-white text-black font-semibold rounded-lg items-center"
                 >
                   <img className="w-3 mr-2" src={icon} alt="Watch Icon" />

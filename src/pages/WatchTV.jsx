@@ -181,7 +181,7 @@ const WatchTV = () => {
           <div className="flex flex-col gap-2">
             {episodes.map((ep) => (
               <div key={ep.id} onClick={() => setSelectedEpisode(ep)}>
-                <Episodes episode={ep} show={show} />
+                <Episodes episode={ep} show={show} season={season} />
               </div>
             ))}
           </div>
