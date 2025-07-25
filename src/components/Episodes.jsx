@@ -1,10 +1,12 @@
 import React from "react";
 import tick from "/tick.png";
+import { useNavigate } from "react-router";
 
-const Episodes = ({ episode, show }) => {
+const Episodes = ({ episode, show ,season}) => {
+  const navigate = useNavigate();
   if (!episode) return null;
   return (
-    <div className="flex flex-col md:flex-row items-center bg-[#181818] rounded-xl py-4 px-4 md:px-6 mb-4 shadow-sm hover:bg-[#232323] transition-all duration-200 w-full cursor-pointer">
+    <div onClick={()=>navigate(`/watchshow/${show.id}/${season}/${episode.episode_number}`)} className="flex flex-col md:flex-row item s-center bg-[#181818] rounded-xl py-4 px-4 md:px-6 mb-4 shadow-sm hover:bg-[#232323] transition-all duration-200 w-full cursor-pointer">
       <div className="flex flex-col items-center md:mr-6 min-w-[80px] w-full md:w-auto mb-2 md:mb-0">
         <img
           src={

@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/watch/:id" element={<WatchMovie />} />
         <Route path="/tv" element={<TVShows />} />
         <Route path="/tv/:id" element={<TVDetails />} />
-        <Route path="/watchshow/:id" element={<WatchTV />} />
+        <Route path="/watchshow/:id/:season/:ep" element={<WatchTV />} />
       </Routes>
     </Suspense>
     </Router>

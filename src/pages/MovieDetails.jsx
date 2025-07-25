@@ -5,7 +5,7 @@ import icon from "/icon.png";
 import youtube from "/Youtube.png";
 import MovieCard from "../components/MovieCard";
 import LazyLoad from "react-lazyload";
-import { Spinner } from "@material-tailwind/react";
+import Spinner from "../components/Spinner";
 import { Plus, Star, Watch } from "lucide-react";
 import WatchMovie from "./WatchMovie";
 
@@ -42,7 +42,7 @@ const MovieDetails = () => {
 
       const response2 = await fetch(
         `${API_BASE_URL}/movie/${id}/recommendations`,
-        API_OPTIONS,
+        API_OPTIONS
       );
       const data2 = await response2.json();
 
@@ -66,7 +66,7 @@ const MovieDetails = () => {
     try {
       const response = await fetch(
         `${API_BASE_URL}/movie/${id}/images?api_key=${API_KEY}`,
-        API_OPTIONS,
+        API_OPTIONS
       );
       const data = await response.json();
 
@@ -170,10 +170,10 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className="flex gap-8 z-10 h-80 w-full pl-25 mt-20">
-            <img src={posterURL} className="w-55 rounded-lg" alt="" />
+          <div className="flex gap-8 z-10 h-50 md:h-80 w-full pl-5 md:pl-25 mt-20">
+            <img src={posterURL} className="w-30 md:w-55 rounded-lg" alt="" />
             <div className="flex flex-col gap-3">
-              <h1 className="text-4xl font-bold">{movie.title}</h1>
+              <h1 className="md:text-4xl font-bold">{movie.title}</h1>
               <h1 className="text-sm text-white">
                 {releasedYear} • {formatRuntime(movie.runtime)}
               </h1>
@@ -182,21 +182,21 @@ const MovieDetails = () => {
                 <h1>{movie.vote_average.toFixed(1)}</h1>
                 <h1>IMDB Rating</h1>
               </span>
-               <h1 className="w-3/5 hidden md:flex">{movie.overview}</h1>
+              <h1 className="w-3/5 hidden md:flex">{movie.overview}</h1>
 
-               <div className="md:flex flex-col md:flex-row gap-4 hidden ">
-          <div
-            onClick={() => setWatchMovie(true)}
-            className="cursor-pointer flex  items-center justify-center gap-2 bg-white px-6 rounded-lg transition duration-300"
-          >
-            <img src={icon} alt="YouTube" className="w-3 h-3" />
-            <h1 className="text-black font-medium">Watch Now </h1>
-          </div>
-          <div className="cursor-pointer flex items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
-            <Plus></Plus>
-            <h1 className="text-white font-medium">Add to Watchlist</h1>
-          </div>
-        </div>
+              <div className="md:flex flex-col md:flex-row gap-4 hidden ">
+                <div
+                  onClick={() => setWatchMovie(true)}
+                  className="cursor-pointer flex  items-center justify-center gap-2 bg-white px-6 rounded-lg transition duration-300"
+                >
+                  <img src={icon} alt="YouTube" className="w-3 h-3" />
+                  <h1 className="text-black font-medium">Watch Now </h1>
+                </div>
+                <div className="cursor-pointer flex items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
+                  <Plus></Plus>
+                  <h1 className="text-white font-medium">Add to Watchlist</h1>
+                </div>
+              </div>
             </div>
           </div>
         ) : (

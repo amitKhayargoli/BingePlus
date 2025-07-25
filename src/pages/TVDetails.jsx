@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import icon from "/icon.png";
 import youtube from "/Youtube.png";
-import { Spinner } from "@material-tailwind/react";
+import Spinner from "../components/Spinner";
 import { Plus, Star } from "lucide-react";
 import tick from "/tick.png";
 import Episodes from "../components/Episodes";
@@ -185,7 +185,7 @@ const TVDetails = () => {
 
               <div className="flex gap-4">
                 <div
-                  onClick={() => navigate(`/watchshow/${id}`)}
+                  onClick={() => navigate(`/watchshow/${id}/2/1`)}
                   className="cursor-pointer flex p-3 bg-white text-black font-semibold rounded-lg items-center"
                 >
                   <img className="w-3 mr-2" src={icon} alt="Watch Icon" />
@@ -215,7 +215,7 @@ const TVDetails = () => {
         ) : (
           <div className="flex justify-center items-center w-full h-96">
             {/* <p>Loading...</p> */}
-            <Spinner />
+            <Spinner/>
           </div>
         )}
       </div>
@@ -268,7 +268,7 @@ const TVDetails = () => {
 
         <div className="flex gap-2 flex-wrap">
           {episodes.map((ep) => (
-            <Episodes key={ep.id} episode={ep} show={show} />
+            <Episodes key={ep.id} episode={ep} show={show} season={selectedSeason} />
           ))}
         </div>
 
