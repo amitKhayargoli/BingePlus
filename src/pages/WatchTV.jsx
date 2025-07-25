@@ -166,8 +166,8 @@ const WatchTV = () => {
                 key={season.id}
                 className={
                   selectedSeason === season.season_number
-                    ? "text-black px-4 py-2 bg-white rounded-lg font-semibold"
-                    : "text-white px-4 py-2 bg-[#232323] rounded-lg font-semibold"
+                    ? "text-black px-4 py-2 bg-[var(--season-active)] rounded-lg font-semibold"
+                    : "text-white px-4 py-2 bg-[var(--season-inactive)] rounded-lg font-semibold"
                 }
                 onClick={() => {
                   setSelectedSeason(season.season_number);
@@ -181,7 +181,7 @@ const WatchTV = () => {
           <div className="flex flex-col gap-2">
             {episodes.map((ep) => (
               <div key={ep.id} onClick={() => setSelectedEpisode(ep)}>
-                <Episodes episode={ep} show={show} season={season} />
+                <Episodes episode={ep} show={show} season={selectedSeason} />
               </div>
             ))}
           </div>

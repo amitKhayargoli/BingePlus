@@ -127,7 +127,7 @@ const TVDetails = () => {
     }
   }, [selectedSeason, id]);
 
-  if (!show) return <p>Loading...</p>;
+  if (!show) return;
 
   const releasedYear = show.first_air_date
     ? show.first_air_date.split("-")[0]
@@ -153,7 +153,7 @@ const TVDetails = () => {
         />
       )}
       <div
-        className="mt-10 md:mt-0 movie-details text-white flex flex-col justify-center items-center relative min-h-[60vh] md:min-h-[80vh] py-14 md:py-0"
+        className="overflow-hidden mt-10 md:mt-0 movie-details text-white flex flex-col justify-center items-center relative min-h-[60vh] md:min-h-[80vh] py-14 md:py-0"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded ? `url(${backdropUrl})` : undefined,
@@ -218,7 +218,6 @@ const TVDetails = () => {
           </div>
         ) : (
           <div className="flex justify-center items-center w-full h-96">
-            {/* <p>Loading...</p> */}
             <Spinner />
           </div>
         )}
@@ -243,8 +242,8 @@ const TVDetails = () => {
               key={season.id}
               className={
                 selectedSeason === season.season_number
-                  ? "text-black p-3 bg-[#ffffff] rounded-lg font-semibold"
-                  : "text-white p-3 bg-[#333333] rounded-lg font-semibold"
+                  ? "text-black p-3 bg-[var(--season-active)] rounded-lg font-semibold"
+                  : "text-white p-3 bg-[var(--season-inactive)] rounded-lg font-semibold"
               }
               onClick={() => setSelectedSeason(season.season_number)}
             >
