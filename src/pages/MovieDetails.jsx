@@ -111,7 +111,7 @@ const MovieDetails = () => {
 
   console.log(movie);
 
-  if (!movie) return <p>Loading...</p>;
+  if (!movie) return;
 
   const releasedYear = movie.release_date
     ? movie.release_date.split("-")[0]
@@ -142,7 +142,7 @@ const MovieDetails = () => {
         />
       )}
       <div
-        className="movie-details text-white flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 h-[80vh] w-full"
+        className="movie-details text-[var(--text-secondary)] flex flex-col relative py-14 md:py-0 mt-10 md:mt-0 h-[80vh] w-full"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded && !watchMovie
@@ -170,11 +170,11 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className="flex gap-8 z-10 h-50 md:h-80 w-full pl-5 md:pl-25 mt-20">
+          <div className="flex gap-8 z-10 h-50 md:h-80 w-full pl-5 md:pl-25 mt-20 text-[var(--secondary)]">
             <img src={posterURL} className="w-30 md:w-55 rounded-lg" alt="" />
             <div className="flex flex-col gap-3">
               <h1 className="md:text-4xl font-bold">{movie.title}</h1>
-              <h1 className="text-sm text-white">
+              <h1 className="text-sm text-[var(--text-secondary)]">
                 {releasedYear} • {formatRuntime(movie.runtime)}
               </h1>
               <h1 className="">"{movie.tagline}"</h1>
@@ -187,14 +187,18 @@ const MovieDetails = () => {
               <div className="md:flex flex-col md:flex-row gap-4 hidden ">
                 <div
                   onClick={() => setWatchMovie(true)}
-                  className="cursor-pointer flex  items-center justify-center gap-2 bg-white px-6 rounded-lg transition duration-300"
+                  className="cursor-pointer flex  items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition duration-300"
                 >
                   <img src={icon} alt="YouTube" className="w-3 h-3" />
-                  <h1 className="text-black font-medium">Watch Now </h1>
+                  <h1 className="text-[var(--primary)] font-medium">
+                    Watch Now{" "}
+                  </h1>
                 </div>
-                <div className="cursor-pointer flex items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
+                <div className="cursor-pointer flex items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
                   <Plus></Plus>
-                  <h1 className="text-white font-medium">Add to Watchlist</h1>
+                  <h1 className="text-[var(--secondary)] font-medium">
+                    Add to Watchlist
+                  </h1>
                 </div>
               </div>
             </div>
@@ -206,44 +210,54 @@ const MovieDetails = () => {
         )}
       </div>
       {/* Watch now and other controls */}
-      <div className="text-white flex flex-col gap-2 px-5 mt-4 ">
+      <div className="text-[var(--text-secondary)] flex flex-col gap-2 px-5 mt-4 ">
         {/* Watch now Button */}
         <div className="flex flex-col md:flex-row gap-4 md:hidden">
           <div
             onClick={() => setWatchMovie(true)}
-            className="cursor-pointer flex flex-1 items-center justify-center gap-2 bg-white px-4 py-3 rounded-xl transition duration-300"
+            className="cursor-pointer flex flex-1 items-center justify-center gap-2 bg-[var(--secondary)] px-4 py-3 rounded-xl transition duration-300"
           >
             <img src={icon} alt="YouTube" className="w-3 h-3" />
-            <h1 className="text-black font-semibold">Watch Now </h1>
+            <h1 className="text-[var(--primary)] font-semibold">Watch Now </h1>
           </div>
-          <div className="cursor-pointer flex flex-1 items-center justify-center gap-2  bg-black border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300">
+          <div className="cursor-pointer flex flex-1 items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300">
             <Plus></Plus>
-            <h1 className="text-white font-semibold">Watchlist</h1>
+            <h1 className="text-[var(--text-primary)] font-semibold">
+              Watchlist
+            </h1>
           </div>
         </div>
         <div>
           <h1 className="md:hidden">{movie.overview}</h1>
         </div>
         <div className="flex flex-col gap-8">
-          <div className="flex text-md font-semibold border-b-2 border-darksecondary">
+          <div className="flex text-md font-semibold border-b-2 border-[var(--maintab-border)]">
             <button
               onClick={() => setTab("overview")}
               className={
-                tab == "overview" ? `border-b-2 flex-1 p-2` : `flex-1 p-2`
+                tab == "overview"
+                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
+                  : `flex-1 p-2`
               }
             >
               Overview
             </button>
             <button
               onClick={() => setTab("cast")}
-              className={tab == "cast" ? `border-b-2 flex-1 p-2` : `flex-1 p-2`}
+              className={
+                tab == "cast"
+                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
+                  : `flex-1 p-2`
+              }
             >
               Cast
             </button>
             <button
               onClick={() => setTab("reviews")}
               className={
-                tab == "reviews" ? `border-b-2 flex-1 p-2` : `flex-1 p-2`
+                tab == "reviews"
+                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
+                  : `flex-1 p-2`
               }
             >
               Reviews
@@ -251,30 +265,42 @@ const MovieDetails = () => {
           </div>
           {tab === "overview" && (
             <div className="p-4 bg-linear-to-r from-[#0A0A0A] rounded-xl border-2 border-[#282727]">
-              <h1 className="text-xl font-bold">Movie Details</h1>
+              <h1 className="text-xl font-bold text-[var(--secondary)]">
+                Movie Details
+              </h1>
               <span className="flex justify-between">
-                <h1 className="text-textgray">Release Date </h1>
-                <h1 className="text-white">{movie.release_date}</h1>
+                <h1 className="">Release Date </h1>
+                <h1 className="text-[var(--secondary)]">
+                  {movie.release_date}
+                </h1>
               </span>
               <span className="flex justify-between">
                 <h1 className="text-textgray">Status</h1>
-                <h1 className="text-white">{movie.status}</h1>
+                <h1 className="text-[var(--text-secondary)]">{movie.status}</h1>
               </span>
               <span className="flex justify-between">
                 <h1 className="text-textgray">Runtime</h1>
-                <h1 className="text-white">{formatRuntime(movie.runtime)}</h1>
+                <h1 className="text-[var(--text-secondary)]">
+                  {formatRuntime(movie.runtime)}
+                </h1>
               </span>
               <span className="flex justify-between">
                 <h1 className="text-textgray">Budget</h1>
-                <h1 className="text-white">{formatMillions(movie.budget)}</h1>
+                <h1 className="text-[var(--text-secondary)]">
+                  {formatMillions(movie.budget)}
+                </h1>
               </span>
               <span className="flex justify-between">
                 <h1 className="text-textgray">Revenue</h1>
-                <h1 className="text-white">{formatMillions(movie.revenue)}</h1>
+                <h1 className="text-[var(--text-secondary)]">
+                  {formatMillions(movie.revenue)}
+                </h1>
               </span>
               <span className="flex justify-between">
                 <h1 className="text-textgray">Language</h1>
-                <h1 className="text-white">{movie.original_language}</h1>
+                <h1 className="text-[var(--text-secondary)]">
+                  {movie.original_language}
+                </h1>
               </span>
             </div>
           )}
@@ -283,7 +309,7 @@ const MovieDetails = () => {
       </div>
       {/* Recommendations only after backdrop is loaded ? Now I am updating it to show recommendations before the backdrop is loaded*/}
       {!watchMovie && (
-        <div className="all-movies text-white text-xl font-bold px-12">
+        <div className="all-movies text-[var(--text-secondary)] text-xl font-bold px-12">
           <h1>Recommended For You</h1>
           <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
             {alternativeMovies.slice(0, 5).map((movie) => (
