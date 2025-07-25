@@ -4,8 +4,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import {Suspense, lazy } from "react";
-import { Spinner } from "@material-tailwind/react";
+import { Suspense, lazy } from "react";
 
 const MovieList = lazy(() => import("./pages/MovieList"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
@@ -19,18 +18,18 @@ const WatchTV = lazy(() => import("./pages/WatchTV"));
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<Spinner/>}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<MovieList />} />
-        <Route path="/search" element={<SearchAll />} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
-        <Route path="/watch/:id" element={<WatchMovie />} />
-        <Route path="/tv" element={<TVShows />} />
-        <Route path="/tv/:id" element={<TVDetails />} />
-        <Route path="/watchshow/:id/:season/:ep" element={<WatchTV />} />
-      </Routes>
-    </Suspense>
+      <Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<MovieList />} />
+          <Route path="/search" element={<SearchAll />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
+          <Route path="/watch/:id" element={<WatchMovie />} />
+          <Route path="/tv" element={<TVShows />} />
+          <Route path="/tv/:id" element={<TVDetails />} />
+          <Route path="/watchshow/:id/:season/:ep" element={<WatchTV />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 };
