@@ -39,16 +39,16 @@ const TVDetails = () => {
       const data = await response.json();
       // Filter out specials (season_number === 0)
       const filteredSeasons = (data.seasons || []).filter(
-        (s) => s.season_number !== 0,
+        (s) => s.season_number !== 0
       );
       setSeasons(filteredSeasons);
       setSelectedSeason(
-        filteredSeasons.length > 0 ? filteredSeasons[0].season_number : null,
+        filteredSeasons.length > 0 ? filteredSeasons[0].season_number : null
       );
 
       const response2 = await fetch(
         `${API_BASE_URL}/tv/${id}/recommendations`,
-        API_OPTIONS,
+        API_OPTIONS
       );
       const data2 = await response2.json();
       setAlternativeShows(data2.results || []);
@@ -65,7 +65,7 @@ const TVDetails = () => {
     try {
       const response = await fetch(
         `${API_BASE_URL}/tv/${id}/images?api_key=${API_KEY}`,
-        API_OPTIONS,
+        API_OPTIONS
       );
       const data = await response.json();
       const logo =
@@ -93,7 +93,7 @@ const TVDetails = () => {
       setIsLoading(true);
       const response = await fetch(
         `${API_BASE_URL}/tv/${id}/season/${seasonNumber}`,
-        API_OPTIONS,
+        API_OPTIONS
       );
       const data = await response.json();
       setEpisodes(data.episodes || []);
@@ -215,7 +215,7 @@ const TVDetails = () => {
         ) : (
           <div className="flex justify-center items-center w-full h-96">
             {/* <p>Loading...</p> */}
-            <Spinner/>
+            <Spinner />
           </div>
         )}
       </div>
@@ -268,7 +268,12 @@ const TVDetails = () => {
 
         <div className="flex gap-2 flex-wrap">
           {episodes.map((ep) => (
-            <Episodes key={ep.id} episode={ep} show={show} season={selectedSeason} />
+            <Episodes
+              key={ep.id}
+              episode={ep}
+              show={show}
+              season={selectedSeason}
+            />
           ))}
         </div>
 
