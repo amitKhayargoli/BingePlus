@@ -4,31 +4,84 @@
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @theme {
-  --color-primary: #000000;
-  --color-darksecondary: #111111;
-  --color-lightsecondary: #fafafafa;
-  --color-secondary: #ffffff;
-
-  --color-textgray: #737373;
-  --color-light-100: #cecefb;
-  --color-light-200: #a8b5db;
-  --color-gray-100: #9ca4ab;
-  --color-dark-100: #0f0d23;
   --font-inter: Inter;
-
   --breakpoint-xs: 480px;
   --background-image-hero-pattern: url("/hero-bg.png");
+}
+
+.dark {
+  --primary: #000000;
+  --secondary: #ffffff;
+  --card: #181818;
+
+  --text-primary: #ffffff;
+  --text-secondary: #737373;
+
+  --button-primary: #ffffff;
+  --button-secondary: #181818;
+
+  --movie-cardbtn-primary: #ffffff;
+  --movie-card-secondary: #292929b9;
+
+  --season-active: #ffffff;
+  --season-inactive: #333333;
+
+  --watch-tv-sidebar-fg: #181818;
+
+  --maintab-border: #111111;
+}
+
+.sunset {
+  --primary: #2a004e; /* Main background or primary color */
+  --secondary: #500073; /* Secondary background or accent */
+  --card: #500073; /* Card backgrounds */
+  --text-primary: #f14a00; /* Main text color (bright orange for contrast) */
+  --text-secondary: #c62300; /* Secondary text (red-orange) */
+
+  --button-primary: #f14a00; /* Primary button (bright orange) */
+  --button-secondary: #2a004e; /* Secondary button (deep purple) */
+
+  --movie-cardbtn-primary: #f14a00;
+  --movie-card-secondary: #c62300;
+
+  --season-active: #f14a00;
+  --season-inactive: #c62300;
+
+  --watch-tv-sidebar-fg: #500073;
+
+  --maintab-border: #2a004e;
+}
+
+.freshlight {
+  --primary: #ffffff; /* Main background: white */
+  --secondary: #0f93ff; /* Secondary background/accent */
+  --card: #cbf1f5; /* Card backgrounds */
+  --text-primary: #3793b7; /* Main text color: deeper sky blue for contrast */
+  --text-secondary: #71c9ce; /* Secondary text: lighter sky blue */
+
+  --button-primary: #3793b7; /* Primary button: deeper sky blue */
+  --button-secondary: #e3fdfd; /* Secondary button: very light blue */
+
+  --movie-cardbtn-primary: #3793b7;
+  --movie-card-secondary: #71c9ce;
+
+  --season-active: #3793b7;
+  --season-inactive: #71c9ce;
+
+  --watch-tv-sidebar-fg: #cbf1f5;
+
+  --maintab-border: #e3fdfd;
 }
 
 @layer base {
   body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
-    background: #000000;
+    background: var(--primary);
   }
 
   main {
-    @apply min-h-screen relative bg-primary;
+    @apply min-h-screen relative bg-[var(--primary)];
   }
 
   header {

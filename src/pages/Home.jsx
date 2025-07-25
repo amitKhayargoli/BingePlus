@@ -112,7 +112,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col justify-center items-center movie-details text-white bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
+      <div className="flex bg-[var(--primary)] flex-col justify-center items-center movie-details text-[var(--secondary)] bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
@@ -130,14 +130,14 @@ const Home = () => {
           <div className="flex flex-col sm:flex-row text-sm md:text-md gap-0 md:gap-4 justify-center">
             <div
               onClick={() => navigate("/movies/986056")}
-              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-white text-black font-semibold rounded-xl items-center"
+              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--button-primary)] text-black font-semibold rounded-xl items-center"
             >
               <img className="w-[12px] h-[15px] mx-2" src={icon} alt="" />
               <h1>Watch Now</h1>
             </div>
             <div
               onClick={() => navigate("/movies/986056")}
-              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-black text-white font-semibold rounded-xl items-center"
+              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--button-secondary)] text-white font-semibold rounded-xl items-center"
             >
               <img className="w-[20px] h-[20px] mx-2" src={info} alt="" />
               <h1>Details</h1>
@@ -145,13 +145,37 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="px-5 flex flex-col gap-5">
-
-        <CardSlider title="Trending Now" movieList={movieList} isLoading={isLoading} errorMessage={errorMessage} />
-        <CardSlider title="Top Rated" movieList={topRatedList} isLoading={isLoading} errorMessage={errorMessage} />
-        <CardSlider title="Popular TV Shows" tvList={tvList} isLoading={isLoading} errorMessage={errorMessage} />
-        <CardSlider title="Romantic Comedy Movies" movieList={romComList} isLoading={isLoading} errorMessage={errorMessage} />
-        <CardSlider title="Netflix Originals" tvList={netflixList} isLoading={isLoading} errorMessage={errorMessage} />
+      <div className="px-5 flex flex-col gap-5 bg-[var(--primary)]">
+        <CardSlider
+          title="Trending Now"
+          movieList={movieList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+        <CardSlider
+          title="Top Rated"
+          movieList={topRatedList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+        <CardSlider
+          title="Popular TV Shows"
+          tvList={tvList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+        <CardSlider
+          title="Romantic Comedy Movies"
+          movieList={romComList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+        <CardSlider
+          title="Netflix Originals"
+          tvList={netflixList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
       </div>
     </>
   );

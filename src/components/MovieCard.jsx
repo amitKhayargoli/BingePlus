@@ -19,10 +19,10 @@ const MovieCard = ({
       />
 
       <div class="absolute inset-0 bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center flex-col space-y-3">
-        <div class="px-4 py-2 bg-white text-black rounded-md font-semibold cursor-pointer">
+        <div class="px-4 py-2 bg-[var(--movie-cardbtn-primary)] text-black rounded-md font-semibold cursor-pointer">
           Watch now
         </div>
-        <div class="px-4 py-2 bg-[#292929b9] text-white rounded-md cursor-pointer">
+        <div class="px-4 py-2 bg-[var(--movie-card-secondary)] text-white rounded-md cursor-pointer">
           Details
         </div>
       </div>
