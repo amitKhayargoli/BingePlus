@@ -3,7 +3,7 @@ import { useDebounce } from "react-use";
 import { useNavigate } from "react-router-dom";
 
 import MovieCard from "../components/MovieCard";
-import { Spinner } from "@material-tailwind/react";
+import Spinner from "../components/Spinner";
 import "../index.css"; // optional for styles
 import Navbar from "../components/Navbar";
 
@@ -31,7 +31,7 @@ const MovieList = () => {
     setErrorMessage("");
 
     try {
-      const endpoint =`${API_BASE_URL}/discover/movie?sort_by=popularity.desc&vote_count.gte=1000&with_genres=35`;
+      const endpoint = `${API_BASE_URL}/discover/movie?sort_by=popularity.desc&vote_count.gte=1000&with_genres=35`;
 
       const response = await fetch(endpoint, API_OPTIONS);
 
