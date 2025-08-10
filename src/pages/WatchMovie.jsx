@@ -12,9 +12,10 @@ const WatchMovie = ({id}) => {
     allowFullScreen
     className="w-full h-full"
     title="Movie Player"
+    
   />
 </div>
-    // </div>
+    // </div>e
   )
 }
 
