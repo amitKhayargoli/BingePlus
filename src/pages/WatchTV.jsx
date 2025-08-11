@@ -88,15 +88,19 @@ const WatchTV = () => {
     }
   }, [selectedSeason, id]);
 
-  // When episodes change, auto-select first if not already selected
+  // When episodes change, or ep from url changes, select the correct episode
   useEffect(() => {
-    if (
-      episodes.length > 0 &&
-      (!selectedEpisode || !episodes.find((e) => e.id === selectedEpisode.id))
-    ) {
-      setSelectedEpisode(ep);
+    if (episodes.length > 0) {
+      const episodeFromUrl = episodes.find(
+        (e) => e.episode_number == ep
+      );
+      if (episodeFromUrl) {
+        setSelectedEpisode(episodeFromUrl);
+      } else {
+        setSelectedEpisode(episodes[0]);
+      }
     }
-  }, [episodes]);
+  }, [episodes, ep]);
 
   return (
     <>
@@ -177,9 +181,13 @@ const WatchTV = () => {
           </div>
           <div className="flex flex-col gap-2">
             {episodes.map((ep) => (
-              <div key={ep.id} onClick={() => handleEpisodeSelect(ep)}>
-                <Episodes episode={ep} show={show} season={selectedSeason} />
-              </div>
+              <Episodes
+                key={ep.id}
+                onClick={() => handleEpisodeSelect(ep)}
+                episode={ep}
+                show={show}
+                season={selectedSeason}
+              />
             ))}
           </div>
         </div>
