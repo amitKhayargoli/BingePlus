@@ -8,8 +8,8 @@
   status = 200
 
 # Prerender for social media crawlers
-[[plugins]]
-  package = "netlify-plugin-prerender-spa"
+#[[plugins]]
+#package = "netlify-plugin-prerender-spa"
 
 [build.environment]
   # Enable prerendering for social media bots
