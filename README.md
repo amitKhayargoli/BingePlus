@@ -20,8 +20,8 @@ Browse trending movies, view detailed information, and enjoy a sleek, modern UI 
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="40" height="40"/>
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-plain.svg" alt="TailwindCSS" width="40" height="40"/>
-  <img src="https://www.themoviedb.org/assets/2/v4/logos/stacked-blue-1f2e14edc0843d2f0c24ee3f0b1eec6fdf75f1a3ff6f0aa90f36b700a0412c62.svg" alt="TMDB" width="60" height="40"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png" width="40" height="40"/>
+  <img src="https://explinks-prod-apis.oss-cn-beijing.aliyuncs.com/apiDefaultIconADI2024062845670904ff61.png" alt="TMDB" width="60" height="40"/>
 </p>
 
 - [React](https://reactjs.org/)
