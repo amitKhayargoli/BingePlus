@@ -28,6 +28,27 @@ const WatchTV = () => {
   // For S1.E1 label
   const [currentLabel, setCurrentLabel] = useState("");
 
+  // Generate meta tags for social sharing
+  const generateMetaTags = () => {
+    const title = selectedEpisode && show 
+      ? `Watch ${show.name} Season ${selectedSeason} Episode ${selectedEpisode.episode_number} on Bingeplus`
+      : show 
+      ? `Watch ${show.name} Season ${selectedSeason || '1'} on Bingeplus`
+      : 'Watch TV Shows on Bingeplus';
+      
+    const description = selectedEpisode?.overview || 
+                       show?.overview || 
+                       `Stream ${show?.name || 'TV shows'} online for free on Bingeplus!`;
+                       
+    const imageUrl = selectedEpisode?.still_path 
+      ? `https://image.tmdb.org/t/p/w500${selectedEpisode.still_path}`
+      : show?.poster_path 
+      ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
+      : '/default-episode-image.jpg';
+      
+    return { title, description, imageUrl };
+  };
+
   // Fetch show and seasons
   const fetchShow = async () => {
     const response = await fetch(`${API_BASE_URL}/tv/${id}`, API_OPTIONS);
@@ -148,20 +169,34 @@ const WatchTV = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, [selectedEpisode, episodes, seasons, selectedSeason]);
 
+  // Generate meta tags
+  const { title, description, imageUrl } = generateMetaTags();
+
   return (
     <>
       <Helmet>
-        <title>{`Watch ${show?.name || ""} Season ${selectedSeason || ""}`}</title>
-        <meta
-          property="og:title"
-          content={`Watch ${show?.name || ""} Season ${selectedSeason || ""}`}
-        />
-        <meta
-          property="og:description"
-          content={`Stream ${show?.name || ""} Season ${selectedSeason || ""} online for free!`}
-        />
-        <meta property="og:type" content="website" />
+        {/* Page title */}
+        <title>{title}</title>
+        
+        {/* Open Graph tags for social sharing (Instagram, Facebook, Discord) */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="500" />
+        <meta property="og:image:height" content="281" />
+        <meta property="og:type" content="video.episode" />
         <meta property="og:url" content={window.location.href} />
+        <meta property="og:site_name" content="Bingeplus" />
+        
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={imageUrl} />
+        
+        {/* Additional meta tags for better SEO */}
+        <meta name="description" content={description} />
+        <meta name="keywords" content={`${show?.name || ''}, watch online, streaming, TV show, Bingeplus`} />
       </Helmet>
       {/* <Navbar />   */}
       <div className="flex h-[100vh] md:mt-0 flex-wrap relative overflow-hidden">
