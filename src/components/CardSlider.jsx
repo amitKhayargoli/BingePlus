@@ -15,9 +15,7 @@ const CardSlider = ({ title, movieList, tvList, isLoading, errorMessage }) => {
         {title}
       </h2>
 
-      {isLoading ? (
-        <Spinner className="h-8 w-8" />
-      ) : errorMessage ? (
+      {errorMessage ? (
         <p className="text-red-500">{errorMessage}</p>
       ) : (
         <div>

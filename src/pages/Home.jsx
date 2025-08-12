@@ -49,62 +49,54 @@ const Home = () => {
       const endpoint4 = `${API_BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_genres=10749,35&vote_count.gte=400`;
       const endpoint5 = `${API_BASE_URL}/discover/tv?include_adult=false&language=en-US&page=1&sort_by=popularity.desc&with_watch_providers=8&with_genres=80&watch_region=US`;
 
-      const response = await fetch(endpoint, API_OPTIONS);
-      const response2 = await fetch(endpoint2, API_OPTIONS);
-      const response3 = await fetch(endpoint3, API_OPTIONS);
-      const response4 = await fetch(endpoint4, API_OPTIONS);
-      const response5 = await fetch(endpoint5, API_OPTIONS);
-      if (!response.ok) {
-        throw new Error("Failed to fetch movies");
+      const responses = await Promise.all([
+        fetch(endpoint, API_OPTIONS),
+        fetch(endpoint2, API_OPTIONS),
+        fetch(endpoint3, API_OPTIONS),
+        fetch(endpoint4, API_OPTIONS),
+        fetch(endpoint5, API_OPTIONS),
+      ]);
+
+      for (const response of responses) {
+        if (!response.ok) {
+          throw new Error("Failed to fetch movies");
+        }
       }
 
-      const data = await response.json();
-      const data2 = await response2.json();
-      const data3 = await response3.json();
-      const data4 = await response4.json();
-      const data5 = await response5.json();
-      if (data.Response === "False") {
+      const [data, data2, data3, data4, data5] = await Promise.all(
+        responses.map((res) => res.json())
+      );
+
+      const processData = (data, setter, listName) => {
+        if (data.Response === "False") {
         setErrorMessage(data.Error);
-        setMovieList([]);
-        return;
+        setter([]);
+        return false;
       }
-      if (data.Response2 === "False") {
-        setErrorMessage(data.Error);
-        setTopRatedList([]);
-        return;
-      }
+      const resultsWithBlurHash = data.results.map(item => ({
+        ...item,
+        blur_hash: "LGF5]+Yk^6#M@-5c,1J5@[or[Q6." // Placeholder blur hash
+      }));
+      setter(resultsWithBlurHash || []);
+      return true;
+    };
 
-      if (data3.Response === "False") {
-        setErrorMessage(data3.Error);
-        setTvList([]);
-        return;
-      }
-
-      if (data4.Response === "False") {
-        setErrorMessage(data4.Error);
-        setRomComList([]);
-        return;
-      }
-
-      if (data5.Response === "False") {
-        setErrorMessage(data5.Error);
-        setNetflixList([]);
-        return;
-      }
-
-      setMovieList(data.results || []);
-      console.log(movieList);
-      setTopRatedList(data2.results || []);
-      setTvList(data3.results || []);
-      setRomComList(data4.results || []);
-      setNetflixList(data5.results || []);
-    } catch (error) {
-      console.error(`Error fetching movies:`, error);
-      setErrorMessage("Error fetching movies. Please try again later.");
-    } finally {
-      setIsLoading(false);
+    if (
+      processData(data, setMovieList, "movieList") &&
+      processData(data2, setTopRatedList, "topRatedList") &&
+      processData(data3, setTvList, "tvList") &&
+      processData(data4, setRomComList, "romComList") &&
+      processData(data5, setNetflixList, "netflixList")
+    ) {
+      // All data fetched and processed successfully
     }
-  };
+  } catch (error) {
+    console.error(`Error fetching movies:`, error);
+    setErrorMessage("Error fetching movies. Please try again later.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchMovies();
