@@ -78,6 +78,28 @@ const WatchTV = () => {
     updateUrl(selectedSeason, epObj.episode_number);
   };
 
+  // Handle next episode button click
+  const handleNextEpisode = () => {
+    if (!selectedEpisode || episodes.length === 0) return;
+    
+    const currentIndex = episodes.findIndex(e => e.id === selectedEpisode.id);
+    if (currentIndex < episodes.length - 1) {
+      // Go to next episode in current season
+      const nextEpisode = episodes[currentIndex + 1];
+      setSelectedEpisode(nextEpisode);
+      updateUrl(selectedSeason, nextEpisode.episode_number);
+    } else if (seasons.length > 0) {
+      // Current episode is last in season, try to go to next season
+      const currentSeasonIndex = seasons.findIndex(s => s.season_number === selectedSeason);
+      if (currentSeasonIndex < seasons.length - 1) {
+        // There is a next season available
+        const nextSeason = seasons[currentSeasonIndex + 1].season_number;
+        setSelectedSeason(nextSeason);
+        // fetchEpisodes will be triggered by the useEffect, and the first episode will be selected
+      }
+    }
+  };
+
   useEffect(() => {
     fetchShow();
   }, [id]);
@@ -101,6 +123,30 @@ const WatchTV = () => {
       }
     }
   }, [episodes, ep]);
+
+  // Listen for message events from the iframe
+  useEffect(() => {
+    const handleMessage = (event) => {
+      // Check if the message is from our iframe and is about the next button
+      if (event.data && typeof event.data === 'string') {
+        // Some players send JSON strings, so we need to try parsing it
+        try {
+          const data = JSON.parse(event.data);
+          if (data.action === 'next' || data.type === 'next' || data.command === 'next') {
+            handleNextEpisode();
+          }
+        } catch (e) {
+          // If it's not JSON, check if it's a simple string command
+          if (event.data === 'nextEpisode' || event.data === 'next') {
+            handleNextEpisode();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [selectedEpisode, episodes, seasons, selectedSeason]);
 
   return (
     <>
@@ -147,6 +193,38 @@ const WatchTV = () => {
                 allowFullScreen
                 className="w-full h-full border-none"
                 title={selectedEpisode.name}
+                onLoad={() => {
+                  // Add a script to the iframe to intercept the next button click
+                  try {
+                    const iframe = document.querySelector('iframe');
+                    if (iframe && iframe.contentWindow) {
+                      // Override the next button click in the iframe
+                      const script = document.createElement('script');
+                      script.textContent = `
+                        // Find and intercept the next button click
+                        document.addEventListener('DOMContentLoaded', () => {
+                          const nextButton = document.querySelector('.next-button, .next-episode-button, [data-action="next"]');
+                          if (nextButton) {
+                            nextButton.addEventListener('click', () => {
+                              window.parent.postMessage('next', '*');
+                            });
+                          }
+                          
+                          // Also intercept the end of video event
+                          const videoElement = document.querySelector('video');
+                          if (videoElement) {
+                            videoElement.addEventListener('ended', () => {
+                              window.parent.postMessage('next', '*');
+                            });
+                          }
+                        });
+                      `;
+                      iframe.contentDocument.head.appendChild(script);
+                    }
+                  } catch (e) {
+                    console.error('Failed to inject script into iframe:', e);
+                  }
+                }}
               />
             </div>
           )}
@@ -170,8 +248,8 @@ const WatchTV = () => {
                 key={season.id}
                 className={
                   selectedSeason === season.season_number
-                    ? "text-black px-4 py-2 bg-[var(--season-active)] rounded-lg font-semibold"
-                    : "text-white px-4 py-2 bg-[var(--season-inactive)] rounded-lg font-semibold"
+                    ? "text-black bg-white px-4 py-2 rounded-lg font-semibold"
+                    : "text-white px-4 py-2 rounded-lg font-semibold"
                 }
                 onClick={() => handleSeasonSelect(season.season_number)}
               >
@@ -179,7 +257,7 @@ const WatchTV = () => {
               </button>
             ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-2  gap-3">
             {episodes.map((ep) => (
               <Episodes
                 key={ep.id}
@@ -187,6 +265,7 @@ const WatchTV = () => {
                 episode={ep}
                 show={show}
                 season={selectedSeason}
+                isCurrentlyPlaying={selectedEpisode && selectedEpisode.id === ep.id}
               />
             ))}
           </div>
