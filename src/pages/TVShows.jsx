@@ -69,7 +69,7 @@ const TVShows = () => {
             ) : errorMessage ? (
               <p className="text-red-500">{errorMessage}</p>
             ) : (
-              <ul>
+              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                 {showList.map((show) => (
                   <ShowCard
                     key={show.id}
