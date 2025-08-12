@@ -30,66 +30,83 @@ Browse trending movies, view detailed information, and enjoy a sleek, modern UI 
 
 ---
 
-## 🔧 Installation
+**🔧 Installation**
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/amitKhayargoli/BingePlus.git
-   cd react-streaming-app
-<img width="3072" height="1920" alt="image" src="https://github.com/user-attachments/assets/f70adbb4-f486-4559-8292-c418d0cea846" />
-Install dependencies
 
 bash
-Copy
-Edit
+git clone https://github.com/amitKhayargoli/BingePlus.git
+cd react-streaming-app
+
+
+<img width="3072" height="1920" alt="image" src="https://github.com/user-attachments/assets/f70adbb4-f486-4559-8292-c418d0cea846" />
+
+2. **Install dependencies**
+
+bash
 npm install
-Configure environment variables
+
+
+3. **Configure environment variables**
 
 Create a .env file in the root directory and add your TMDB API key:
 
 env
-Copy
-Edit
 VITE_TMDB_API_KEY=your_tmdb_api_key_here
-You can get an API key by creating an account at TMDB.
 
-Run the development server
+
+> You can get an API key by creating an account at [TMDB](https://www.themoviedb.org/).
+
+4. **Run the development server**
 
 bash
-Copy
-Edit
 npm run dev
-🌐 Live Demo
-Check out the live version here: BingePlus
 
-📁 Folder Structure
+
+---
+
+**🌐 Live Demo**
+
+Check out the live version here: https://bingeplus.netlify.app/
+
+---
+
+**📁 Folder Structure**
+
 bash
-Copy
-Edit
 src/
 ├── assets/         # Images and static assets
 ├── components/     # Reusable UI components
 ├── pages/          # Page-level components
 ├── App.jsx         # Root component
 └── index.css       # Tailwind CSS
-📌 Todo
- Add pagination
 
- Add user authentication
 
- Add "My Watchlist" feature
+---
 
- Add loading animations
+**📌 Todo**
 
-🙌 Acknowledgements
-TMDB for the amazing API
+* [ ] Add pagination
+* [ ] Add user authentication
+* [ ] Add "My Watchlist" feature
+* [ ] Add loading animations
 
-Tailwind CSS for utility-first styling
 
-React for the UI library
 
-📄 License
-This project is open source and available under the MIT License.
+**🙌 Acknowledgements**
 
-👤 Author
-Amit Khayargoli
+* [TMDB](https://www.themoviedb.org/) for the amazing API
+* [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
+* [React](https://reactjs.org/) for the UI library
+
+---
+
+**📄 License**
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**👤 Author**
+
+[Amit Khayargoli](https://github.com/amitKhayargoli)
