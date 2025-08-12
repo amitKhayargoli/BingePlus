@@ -19,9 +19,9 @@ Browse trending movies, view detailed information, and enjoy a sleek, modern UI 
 ## 🛠️ Built With
 
 <p align="left">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="40" height="40"/>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png" width="40" height="40"/>
-  <img src="https://explinks-prod-apis.oss-cn-beijing.aliyuncs.com/apiDefaultIconADI2024062845670904ff61.png" alt="TMDB" width="60" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="React" width="80"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2560px-Tailwind_CSS_Logo.svg.png" width="80"/>
+  <img src="https://explinks-prod-apis.oss-cn-beijing.aliyuncs.com/apiDefaultIconADI2024062845670904ff61.png" alt="TMDB" width="80"/>
 </p>
 
 - [React](https://reactjs.org/)
