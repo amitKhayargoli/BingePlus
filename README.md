@@ -106,11 +106,3 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 [Amit Khayargoli](https://github.com/amitKhayargoli)
-
-```
-
----
-
-
-Do you want me to make that change?
-```
