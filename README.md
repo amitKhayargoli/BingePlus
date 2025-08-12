@@ -1,11 +1,11 @@
 ````
-# 🎬 React Movie Streaming Website
+**🎬 React Movie Streaming Website**
 
 A fully responsive movie streaming website built using **React**, **Tailwind CSS**, and **The Movie Database (TMDB) API**. Browse trending movies, view detailed information, and enjoy a sleek, modern UI optimized for all screen sizes.
 
 ---
 
-## 🚀 Features
+**🚀 Features**
 
 - 🎥 **Trending Movies & TV Shows**
 - 🔍 **Search Functionality**
@@ -16,7 +16,7 @@ A fully responsive movie streaming website built using **React**, **Tailwind CSS
 
 ---
 
-## 🛠️ Built With
+**🛠️ Built With**
 
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
@@ -24,7 +24,7 @@ A fully responsive movie streaming website built using **React**, **Tailwind CSS
 
 ---
 
-## 🔧 Installation
+**🔧 Installation**
 
 1. **Clone the repository**
 
@@ -59,13 +59,13 @@ npm run dev
 
 ---
 
-## 🌐 Live Demo
+**🌐 Live Demo**
 
-Check out the live version here: [https://your-demo-link.com](https://your-demo-link.com)
+Check out the live version here: https://bingeplus.netlify.app/
 
 ---
 
-## 📁 Folder Structure
+**📁 Folder Structure**
 
 ```bash
 src/
@@ -78,7 +78,7 @@ src/
 
 ---
 
-## 📌 Todo
+**📌 Todo**
 
 * [ ] Add pagination
 * [ ] Add user authentication
@@ -87,7 +87,7 @@ src/
 
 ---
 
-## 🙌 Acknowledgements
+**🙌 Acknowledgements**
 
 * [TMDB](https://www.themoviedb.org/) for the amazing API
 * [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
@@ -95,13 +95,13 @@ src/
 
 ---
 
-## 📄 License
+**📄 License**
 
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-## 👤 Author
+**👤 Author**
 
 [Amit Khayargoli](https://github.com/amitKhayargoli)
 
@@ -109,5 +109,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Let me know if you'd like me to customize this for your actual GitHub repo, or generate a matching `package.json` or deploy instructions (e.g., Vercel/Netlify).
 ```
