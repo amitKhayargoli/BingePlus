@@ -269,7 +269,7 @@ const TVDetails = () => {
           </h1>
         </div>
 
-        <div className="flex gap-2 flex-wrap">
+        <div className="grid grid-cols-4 gap-2 ">
           {episodes.map((ep) => (
             <Episodes
               key={ep.id}
