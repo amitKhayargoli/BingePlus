@@ -1,4 +1,16 @@
+[build]
+  publish = "dist"
+  command = "npm run build"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Prerender for social media crawlers
+[[plugins]]
+  package = "netlify-plugin-prerender-spa"
+
+[build.environment]
+  # Enable prerendering for social media bots
+  NETLIFY_PRERENDER = "true"
