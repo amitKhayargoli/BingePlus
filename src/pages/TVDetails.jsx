@@ -31,7 +31,7 @@ const TVDetails = () => {
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [episodes, setEpisodes] = useState([]);
-
+ const [selectedEpisode, setSelectedEpisode] = useState(null);
   const fetchShow = async () => {
     try {
       setIsLoading(true);
@@ -102,6 +102,15 @@ const TVDetails = () => {
     } finally {
       setIsLoading(false);
     }
+  };
+  // When selecting an episode
+  const handleEpisodeSelect = (epObj) => {
+    setSelectedEpisode(epObj);
+    updateUrl(selectedSeason, epObj.episode_number);
+  };
+
+    const updateUrl = (newSeason, newEp) => {
+    navigate(`/watchshow/${id}/${newSeason}/${newEp}`, { replace: true });
   };
 
   useEffect(() => {
@@ -276,6 +285,7 @@ const TVDetails = () => {
               key={ep.id}
               episode={ep}
               show={show}
+              onClick={() => handleEpisodeSelect(ep)}
               season={selectedSeason}
             />
           ))}
