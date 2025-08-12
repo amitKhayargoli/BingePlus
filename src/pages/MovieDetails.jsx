@@ -77,7 +77,7 @@ const MovieDetails = () => {
 
       const logo =
         data.logos.find((logo) => logo.iso_639_1 === "en") || data.logos[0];
-      const url = data.backdrops[2].file_path;
+      const url = data.backdrops[0].file_path;
       setbackdropUrl(`https://image.tmdb.org/t/p/w1920${url}`);
 
       console.log(url);

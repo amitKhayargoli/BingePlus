@@ -71,8 +71,8 @@ const TVDetails = () => {
       const logo =
         data.logos.find((logo) => logo.iso_639_1 === "en") || data.logos[0];
       const url =
-        data.backdrops && data.backdrops[2]
-          ? data.backdrops[2].file_path
+        data.backdrops && data.backdrops[0]
+          ? data.backdrops[0].file_path
           : data.backdrops && data.backdrops[0]
             ? data.backdrops[0].file_path
             : null;
@@ -162,7 +162,7 @@ const TVDetails = () => {
         />
       )}
       <div
-        className="overflow-hidden mt-10 md:mt-0 movie-details text-[var(--text-primary)] flex flex-col justify-center items-center relative min-h-[60vh] md:min-h-[80vh] py-14 md:py-0"
+        className="overflow-hidden mt-10 md:mt-0 movie-details text-[var(--text-primary)] flex flex-col justify-center items-center relative min-h-[60vh] md:h-screen py-14 md:py-0"
         style={{
           backgroundImage:
             backdropUrl && isBackdropLoaded ? `url(${backdropUrl})` : undefined,
@@ -177,18 +177,18 @@ const TVDetails = () => {
         {/* inside image div */}
         {isBackdropLoaded ? (
           <div className="flex flex-col">
-            <div className="text-center flex flex-col items-center md:mt-20 gap-5 px-4 z-10 w-full">
+            <div className="text-center flex flex-col items-center md:mt-0 gap-5 px-4 z-10 w-full">
               {logoUrl ? (
                 <img
                   src={logoUrl}
                   alt={`${show.name}`}
-                  className="mx-auto max-w-xs object-contain"
+                  className="mx-auto max-w-sm object-contain"
                 />
               ) : (
                 <h1 className="text-4xl font-bold">{show.name}</h1>
               )}
 
-              <h1 className="text-[#616161] font-semibold">
+              <h1 className="font-semibold">
                 {releasedYear} • {formatRuntime(show.episode_run_time)}
               </h1>
 
@@ -216,12 +216,12 @@ const TVDetails = () => {
                   {Number(show.vote_average?.toFixed(1))} IMDB Rating
                 </h1>
 
-                <h1 className="italic text-[#737373]">"{show.tagline}"</h1>
+                <h1 className="italic text-[#737373] text-xl">"{show.tagline}"</h1>
               </div>
 
-              <div className="md:w-160 max-w-3xl">
-                <h1 className="font-semibold">Synopsis</h1>
-                <p className="text-[#8E8E8E]">{show.overview}</p>
+              <div className="max-w-3xl">
+                <h1 className="font-semibold md:text-2xl text-xl">Synopsis</h1>
+                <p className="text-[#fff] md:text-xl">{show.overview}</p>
               </div>
             </div>
           </div>
