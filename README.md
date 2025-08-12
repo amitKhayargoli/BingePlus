@@ -1,4 +1,4 @@
-````
+
 **🎬 React Movie Streaming Website**
 
 A fully responsive movie streaming website built using **React**, **Tailwind CSS**, and **The Movie Database (TMDB) API**. Browse trending movies, view detailed information, and enjoy a sleek, modern UI optimized for all screen sizes.
@@ -85,7 +85,7 @@ src/
 * [ ] Add "My Watchlist" feature
 * [ ] Add loading animations
 
----
+
 
 **🙌 Acknowledgements**
 
@@ -105,8 +105,3 @@ This project is open source and available under the [MIT License](LICENSE).
 
 [Amit Khayargoli](https://github.com/amitKhayargoli)
 
-```
-
----
-
-```
