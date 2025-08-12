@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="hidden bg-[var(--primary)] sticky top-0 z-40 md:flex items-center justify-between px-5 py-3">
         <h1
           onClick={() => navigate("/")}
-          class="cursor-pointer text-xl text-gradient"
+          className="cursor-pointer text-xl text-gradient"
         >
           Binge+
         </h1>
@@ -97,7 +97,7 @@ const Navbar = () => {
         </li>
         <h1
           onClick={() => navigate("/")}
-          class="cursor-pointer text-xl text-gradient"
+          className="cursor-pointer text-xl text-gradient"
         >
           Binge+
         </h1>
