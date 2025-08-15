@@ -6,7 +6,7 @@ import youtube from "/Youtube.png";
 import MovieCard from "../components/MovieCard";
 import LazyLoad from "react-lazyload";
 import Spinner from "../components/Spinner";
-import { Plus, Star, Watch } from "lucide-react";
+import { Play, PlayCircle, Plus, Star, Watch } from "lucide-react";
 import WatchMovie from "./WatchMovie";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
@@ -187,16 +187,17 @@ const MovieDetails = () => {
               <div className="md:flex flex-col md:flex-row gap-4 hidden ">
                 <div
                   onClick={() => setWatchMovie(true)}
-                  className="cursor-pointer flex  items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition duration-300"
+                  className="cursor-pointer text-black hover:text-white hover:bg-black border-1 hover:border-white flex items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition-all duration-300"
                 >
-                  <img src={icon} alt="YouTube" className="w-3 h-3" />
-                  <h1 className="text-[var(--primary)] font-medium">
+                  {/* <img src={icon} alt="YouTube" className="w-3 h-3" /> */}
+                  <Play className="text-amber-600 border-none"/>
+                  <h1 className="font-medium ">
                     Watch Now{" "}
                   </h1>
                 </div>
-                <div className="cursor-pointer flex items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg transition duration-300">
+                <div className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300">
                   <Plus></Plus>
-                  <h1 className="text-[var(--secondary)] font-medium">
+                  <h1 className="font-medium">
                     Add to Watchlist
                   </h1>
                 </div>
