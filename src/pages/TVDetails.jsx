@@ -292,7 +292,7 @@ const TVDetails = () => {
         </div>
 
         {isBackdropLoaded && (
-          <div className="all-movies text-[var(--text-primary)] text-xl font-bold">
+          <div className="all-movies mb-10 text-[var(--text-primary)] text-xl font-bold">
             <h1>Recommended For You</h1>
             <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
               {alternativeShows.slice(0, 5).map((tv) => (
