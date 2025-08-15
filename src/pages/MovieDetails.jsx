@@ -170,19 +170,19 @@ const MovieDetails = () => {
             <WatchMovie id={id} />
           </div>
         ) : isBackdropLoaded && !watchMovie ? (
-          <div className="flex gap-2 md:gap-8 z-10 h-45 md:h-80 w-full pl-5 md:pl-25 mt-20 text-[var(--secondary)]">
-            <img src={posterURL} className="w-30 md:w-55 rounded-lg" alt="" />
+          <div className="flex gap-2 md:gap-8 z-10 h-45 w-full pl-5 md:pl-25 mt-20 text-[var(--secondary)]">
+            <img src={posterURL} className="w-30 hidden rounded-lg" alt="" />
             <div className="flex flex-col gap-3">
-              <h1 className="md:text-4xl font-bold">{movie.title}</h1>
-              <h1 className="text-sm text-[var(--text-secondary)]">
+              <h1 className="md:text-8xl font-bold">{movie.title}</h1>
+              <h1 className="text-5xl">
                 {releasedYear} • {formatRuntime(movie.runtime)}
               </h1>
-              <h1 className="">"{movie.tagline}"</h1>
+              <h1 className="text-5xl">"{movie.tagline}"</h1>
               <span className="flex gap-2">
-                <h1>{movie.vote_average.toFixed(1)}</h1>
-                <h1>IMDB Rating</h1>
+                <h1 className="!text-6xl text-amber-400">{movie.vote_average.toFixed(1)}</h1>
+                <h1 className="!text-3xl">IMDB</h1>
               </span>
-              <h1 className="w-3/5 hidden md:flex">{movie.overview}</h1>
+              <h1 className="w-3/5 hidden">{movie.overview}</h1>
 
               <div className="md:flex flex-col md:flex-row gap-4 hidden ">
                 <div
