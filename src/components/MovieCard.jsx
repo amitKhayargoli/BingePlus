@@ -18,7 +18,7 @@ const MovieCard = ({
         <BlurImage src={imageSrc} alt={title} />
       </div>
 
-      <div className="absolute inset-0 bg-black bg-opacity-0 opacity-0 group-hover:bg-opacity-40 group-hover:opacity-100 transition duration-300 flex items-center justify-center flex-col space-y-3">
+      <div className="absolute inset-0 bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center flex-col space-y-3">
         <div className="px-4 py-2 bg-[var(--movie-cardbtn-primary)] text-black rounded-md font-semibold cursor-pointer">
           Watch now
         </div>
