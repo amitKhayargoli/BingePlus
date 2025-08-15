@@ -63,7 +63,7 @@ const MovieList = () => {
   return (
     <>
       <Navbar />
-      <main className="pt-10 md:pt-0">
+      <main className="pt-10 md:pt-0 mb-20">
         <div className="wrapper">
           <header className="flex items-center"></header>
 
