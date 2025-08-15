@@ -3,7 +3,6 @@ import { useDebounce } from "react-use";
 import { useNavigate } from "react-router-dom";
 
 import MovieCard from "../components/MovieCard";
-import Spinner from "../components/Spinner";
 import "../index.css"; // optional for styles
 import Navbar from "../components/Navbar";
 
@@ -70,22 +69,19 @@ const MovieList = () => {
           <section className="all-movies px-10 md:px-20 text-white">
             <h1 className="text-4xl font-bold">Movies</h1>
 
-            {isLoading ? (
-              <Spinner className="h-8 w-8 fixed top-1/2 left-1/2" />
-            ) : errorMessage ? (
-              <p className="text-red-500">{errorMessage}</p>
-            ) : (
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-
-                {movieList.map((movie) => (
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {errorMessage ? (
+                <p className="text-red-500">{errorMessage}</p>
+              ) : (
+                movieList.map((movie) => (
                   <MovieCard
                     key={movie.id}
                     movie={movie}
                     onClick={() => navigate(`/movies/${movie.id}`)}
                   />
-                ))}
-              </ul>
-            )}
+                ))
+              )}
+            </ul>
           </section>
         </div>
       </main>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ShowCard from "../components/ShowCard";
-import Spinner from "../components/Spinner";
 import { useNavigate } from "react-router";
 const TVShows = () => {
   const navigate = useNavigate();
@@ -64,21 +63,19 @@ const TVShows = () => {
           <section className="all-movies px-10 md:px-20 text-white">
             <h1 className="text-4xl font-bold">TV Shows</h1>
 
-            {isLoading ? (
-              <Spinner className="h-8 w-8 fixed top-1/2 left-1/2" />
-            ) : errorMessage ? (
-              <p className="text-red-500">{errorMessage}</p>
-            ) : (
-              <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {showList.map((show) => (
+            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {errorMessage ? (
+                <p className="text-red-500">{errorMessage}</p>
+              ) : (
+                showList.map((show) => (
                   <ShowCard
                     key={show.id}
                     show={show}
                     onClick={() => navigate(`/tv/${show.id}`)}
                   />
-                ))}
-              </ul>
-            )}
+                ))
+              )}
+            </ul>
           </section>
         </div>
       </main>
