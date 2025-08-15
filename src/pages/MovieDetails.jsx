@@ -309,7 +309,7 @@ const MovieDetails = () => {
       </div>
       {/* Recommendations only after backdrop is loaded ? Now I am updating it to show recommendations before the backdrop is loaded*/}
       {!watchMovie && (
-        <div className="all-movies text-[var(--text-secondary)] text-xl font-bold px-12">
+        <div className="all-movies mb-10 text-[var(--text-secondary)] text-xl font-bold px-12">
           <h1>Recommended For You</h1>
           <ul className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
             {alternativeMovies.slice(0, 5).map((movie) => (
