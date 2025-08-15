@@ -138,7 +138,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="px-5 flex flex-col gap-5 bg-[var(--primary)]">
+      <div className="px-5 flex flex-col gap-5 bg-[var(--primary)] mb-10">
         <CardSlider
           title="Trending Now"
           movieList={movieList}
