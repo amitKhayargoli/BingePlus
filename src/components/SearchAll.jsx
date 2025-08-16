@@ -10,6 +10,7 @@ const SearchAll = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [search, setSearch] = useState("");
   const [mediaList, setMediaList] = useState([]);
+  const [error, setError] = useState(null);
 
   useDebounce(() => setDebouncedSearchTerm(search), 600, [search]);
   const navigate = useNavigate();
@@ -29,9 +30,14 @@ const SearchAll = () => {
   };
 
   const searchMovies = async (query) => {
+    if (!query) {
+      setMediaList([]);
+      return;
+    }
+
     setIsLoading(true);
     try {
-      const endpoint = `${API_BASE_URL}/search/multi?query=${encodeURIComponent(query)} & language=en-US`;
+      const endpoint = `${API_BASE_URL}/search/multi?query=${encodeURIComponent(query)}&language=en-US`;
       const response = await fetch(endpoint, API_OPTIONS);
 
       if (!response.ok) {
@@ -39,12 +45,6 @@ const SearchAll = () => {
       }
 
       const data = await response.json();
-
-      if (data.Response === "False") {
-        setErrorMessage(data.Error);
-        setMediaList([]);
-        return;
-      }
 
       const filteredResults = data.results.filter((item) => {
         const isValidType =
@@ -70,9 +70,10 @@ const SearchAll = () => {
         );
       });
       setMediaList(filteredResults || []);
-    } catch (error) {
-      console.error(`Error fetching movies:`, error);
-      setErrorMessage("Error fetching movies. Please try again later.");
+    } catch (err) {
+      console.error(`Error fetching movies:`, err);
+      setError("Error fetching movies. Please try again later.");
+      setMediaList([]);
     } finally {
       setIsLoading(false);
     }
@@ -100,32 +101,43 @@ const SearchAll = () => {
           </span>
         </div>
         <div className="w-full flex justify-center items-center">
-          {search == "" ? (
+          {search === "" ? (
             <div className="text-white flex flex-col items-center mt-30">
-              <Search size={36}></Search>
+              <Search size={36} />
               <h1 className="text-xl text-center md:text-2xl">
                 Search for movie titles, or use filters to explore
               </h1>
             </div>
-          ) : isLoading == true ? (
-            <Spinner className="h-8 w-8" />
+          ) : error ? (
+            <div className="text-white text-center">
+              <p>{error}</p>
+            </div>
           ) : (
-            // Movies List
-            <ul className="grid grid-cols-1 gap-3 gap-y-20 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5;">
-              {mediaList.map((media) => (
-                <MovieCard
-                  key={media.id}
-                  movie={media}
-                  onClick={() => {
-                    if (media.media_type === "movie") {
-                      navigate(`/movies/${media.id}`);
-                    } else if (media.media_type === "tv") {
-                      navigate(`/tv/${media.id}`);
-                    }
-                  }}
-                />
-              ))}
-            </ul>
+            <div className="w-full">
+              {isLoading ? (
+                <div className="grid grid-cols-1 gap-3 gap-y-20 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                  {[...Array(10)].map((_, index) => (
+                    <div key={index} className="w-full aspect-[2/3] bg-gray-900 rounded-lg animate-pulse" />
+                  ))}
+                </div>
+              ) : (
+                <ul className="grid grid-cols-1 gap-3 gap-y-20 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                  {mediaList.map((media) => (
+                    <MovieCard
+                      key={media.id}
+                      movie={media}
+                      onClick={() => {
+                        if (media.media_type === "movie") {
+                          navigate(`/movies/${media.id}`);
+                        } else if (media.media_type === "tv") {
+                          navigate(`/tv/${media.id}`);
+                        }
+                      }}
+                    />
+                  ))}
+                </ul>
+              )}
+            </div>
           )}
         </div>
       </div>
