@@ -82,7 +82,7 @@ const Navbar = () => {
     navigate("/search")
   }} type="text" className='outline-none placeholder:text-white text-white cursor-pointer flex-1' placeholder='Start searching' /> */}
           </div>
-          <img src={avatar} className="w-[40px]" alt="" />
+          {/* <img src={avatar} className="w-[40px]" alt="" /> */}
         </div>
       </div>
 
