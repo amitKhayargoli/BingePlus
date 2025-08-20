@@ -105,7 +105,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="flex bg-[var(--primary)] flex-col justify-center items-center movie-details text-[var(--secondary)] bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
+      <div className="flex mt-10 md:mt-0 bg-[var(--primary)] flex-col justify-center items-center movie-details text-[var(--secondary)] bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
