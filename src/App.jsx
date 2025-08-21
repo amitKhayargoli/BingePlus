@@ -5,6 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Suspense, lazy } from "react";
+import WatchList from "./pages/WatchList";
 
 const MovieList = lazy(() => import("./pages/MovieList"));
 const MovieDetails = lazy(() => import("./pages/MovieDetails"));
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/search" element={<SearchAll />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
           <Route path="/watch/:id" element={<WatchMovie />} />
+          <Route path="/watchlist" element={<WatchList />} />
           <Route path="/tv" element={<TVShows />} />
           <Route path="/tv/:id" element={<TVDetails />} />
           <Route path="/watchshow/:id/:season/:ep" element={<WatchTV />} />
