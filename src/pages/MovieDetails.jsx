@@ -6,8 +6,9 @@ import youtube from "/Youtube.png";
 import MovieCard from "../components/MovieCard";
 import LazyLoad from "react-lazyload";
 import Spinner from "../components/Spinner";
-import { Play, PlayCircle, Plus, Star, Watch } from "lucide-react";
+import { Check, Play, PlayCircle, Plus, Star, Watch } from "lucide-react";
 import WatchMovie from "./WatchMovie";
+import useWatchlist from "../hooks/useWatchlist";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -28,6 +29,7 @@ const MovieDetails = () => {
   const [posterURL, setposterURL] = useState(null);
   const [backdropUrl, setbackdropUrl] = useState(null);
   const [logoUrl, setLogoUrl] = useState(null);
+  const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
   const [error, setError] = useState(null);
   const [alternativeMovies, setAlternativeMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -194,10 +196,19 @@ const MovieDetails = () => {
                     Watch Now{" "}
                   </h1>
                 </div>
-                <div className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300">
-                  <Plus></Plus>
+                <div 
+                  onClick={() => {
+                    if (isInWatchlist(movie.id)) {
+                      removeFromWatchlist(movie.id);
+                    } else {
+                      addToWatchlist({ ...movie, media_type: 'movie' });
+                    }
+                  }}
+                  className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
+                >
+                  {isInWatchlist(movie.id) ? <Check /> : <Plus />}
                   <h1 className="font-medium">
-                    Add to Watchlist
+                    {isInWatchlist(movie.id) ? 'In Watchlist' : 'Add to Watchlist'}
                   </h1>
                 </div>
               </div>
@@ -220,10 +231,19 @@ const MovieDetails = () => {
             <img src={icon} alt="YouTube" className="w-3 h-3" />
             <h1 className="text-[var(--primary)] font-semibold">Watch Now </h1>
           </div>
-          <div className="cursor-pointer flex flex-1 items-center justify-center gap-2  bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300">
-            <Plus></Plus>
+          <div
+            onClick={() => {
+              if (isInWatchlist(movie.id)) {
+                removeFromWatchlist(movie.id);
+              } else {
+                addToWatchlist({ ...movie, media_type: 'movie' });
+              }
+            }}
+            className="cursor-pointer flex flex-1 items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300"
+          >
+            {isInWatchlist(movie.id) ? <Check /> : <Plus />}
             <h1 className="text-[var(--text-primary)] font-semibold">
-              Watchlist
+              {isInWatchlist(movie.id) ? 'In Watchlist' : 'Add to Watchlist'}
             </h1>
           </div>
         </div>
