@@ -4,8 +4,9 @@ import Navbar from "../components/Navbar";
 import icon from "/icon.png";
 import youtube from "/Youtube.png";
 import Spinner from "../components/Spinner";
-import { Plus, Star } from "lucide-react";
+import { Plus, Star, Check } from "lucide-react";
 import tick from "/tick.png";
+import useWatchlist from "../hooks/useWatchlist";
 import Episodes from "../components/Episodes";
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -28,6 +29,7 @@ const TVDetails = () => {
   const [error, setError] = useState(null);
   const [alternativeShows, setAlternativeShows] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
   const [seasons, setSeasons] = useState([]);
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [episodes, setEpisodes] = useState([]);
@@ -204,10 +206,20 @@ const TVDetails = () => {
                   <img className="w-3 mr-2" src={icon} alt="Watch Icon" />
                   <h1 className="text-sm">Watch Now</h1>
                 </div>
-                <div className="cursor-pointer flex p-3 bg-black text-[var(--text-primary)] font-semibold rounded-lg items-center">
-                  {/* <img className="w-5 mr-2" src={youtube} alt="YouTube Icon" /> */}
-                  <Plus className="text-[var(--text-primary)] w-5 mr-2" />
-                  <h1 className="text-sm">Watchlist</h1>
+                <div 
+                  onClick={() => {
+                    if (isInWatchlist(Number(id))) {
+                      removeFromWatchlist(Number(id));
+                    } else {
+                      addToWatchlist({ ...show, media_type: 'tv', title: show.name });
+                    }
+                  }}
+                  className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
+                >
+                  {isInWatchlist(Number(id)) ? <Check /> : <Plus />}
+                  <h1 className="font-medium">
+                    {isInWatchlist(Number(id)) ? 'In Watchlist' : 'Add to Watchlist'}
+                  </h1>
                 </div>
               </div>
 
