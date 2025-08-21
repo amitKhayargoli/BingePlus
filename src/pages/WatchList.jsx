@@ -33,7 +33,7 @@ const WatchList = () => {
         <h1 className="text-4xl font-bold text-white mb-4">My Watchlist</h1>
         
         {watchlist.length === 0 ? (
-          <div className="text-center text-gray-400 py-12">
+          <div className="text-center text-gray-400 py-12 md:py-40">
             <h2 className="text-xl mb-4">Your watchlist is empty</h2>
             <p>Start adding movies and TV shows to keep track of what you want to watch!</p>
           </div>
