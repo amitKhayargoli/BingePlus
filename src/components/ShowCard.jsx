@@ -2,24 +2,32 @@ import React from "react";
 import BlurImage from "./BlurImage";
 
 const ShowCard = ({ show: { poster_path, name }, onClick }) => {
-  const imageSrc = poster_path
+  // Low-res image for placeholder
+  const lowResSrc = poster_path
+    ? `https://image.tmdb.org/t/p/w154/${poster_path}` // small version
+    : "/no-movie.png";
+
+  // High-res image
+  const highResSrc = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
     : "/no-movie.png";
 
   return (
     <div
       onClick={onClick}
-      className="relative movie-card cursor-pointer movie-card group"
+      className="relative movie-card cursor-pointer group overflow-hidden rounded-lg w-full"
     >
-      <div className="w-full aspect-[2/3]">
-        <BlurImage src={imageSrc} alt={name} />
+      {/* Fixed aspect ratio to reserve space */}
+      <div className="w-full aspect-[2/3] overflow-hidden">
+        <BlurImage src={highResSrc} lowSrc={lowResSrc} alt={name} />
       </div>
 
-      <div class="absolute inset-0 bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center flex-col space-y-3">
-        <div class="px-4 py-2 bg-white text-black rounded-md font-semibold cursor-pointer">
+      {/* Hover overlay */}
+      <div className="absolute inset-0 bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center flex-col space-y-3">
+        <div className="px-4 py-2 bg-[var(--movie-cardbtn-primary)] text-black rounded-md font-semibold cursor-pointer">
           Watch now
         </div>
-        <div class="px-4 py-2 bg-[#292929b9] text-white rounded-md cursor-pointer">
+        <div className="px-4 py-2 bg-[var(--movie-card-secondary)] text-white rounded-md cursor-pointer">
           Details
         </div>
       </div>
