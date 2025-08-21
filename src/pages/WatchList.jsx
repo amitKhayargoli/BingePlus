@@ -30,7 +30,7 @@ const WatchList = () => {
     <>
       <Navbar />
       <div className="px-4 md:px-18 mt-20 md:mt-10">
-        <h1 className="text-3xl font-bold text-white mb-8">My Watchlist</h1>
+        <h1 className="text-4xl font-bold text-white mb-4">My Watchlist</h1>
         
         {watchlist.length === 0 ? (
           <div className="text-center text-gray-400 py-12">
