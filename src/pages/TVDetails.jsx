@@ -264,7 +264,7 @@ const TVDetails = () => {
               className={
                 selectedSeason === season.season_number
                   ? "text-black p-3 bg-[var(--season-active)] rounded-lg font-semibold"
-                  : "text-[var(--text-primary)] p-3 bg-[var(--season-inactive)] rounded-lg font-semibold"
+                  : "text-[var(--text-primary)] p-3 bg-[var(--season-inactive)] rounded-lg font-semibold cursor-pointer"
               }
               onClick={() => setSelectedSeason(season.season_number)}
             >
