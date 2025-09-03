@@ -35,7 +35,7 @@ Browse trending movies, view detailed information, and enjoy a sleek, modern UI 
 
 ```bash
 git clone https://github.com/amitKhayargoli/BingePlus.git
-cd react-streaming-app
+cd BingePlus
 ````
 
 <img width="3072" height="1920" alt="image" src="https://github.com/user-attachments/assets/f70adbb4-f486-4559-8292-c418d0cea846" />
