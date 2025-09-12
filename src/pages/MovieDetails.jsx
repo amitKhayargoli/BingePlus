@@ -180,7 +180,9 @@ const MovieDetails = () => {
               </h1>
               <h1 className="text-5xl">"{movie.tagline}"</h1>
               <span className="flex gap-2">
-                <h1 className="!text-6xl text-amber-400">{movie.vote_average.toFixed(1)}</h1>
+                <h1 className="!text-6xl text-amber-400">
+                  {movie.vote_average.toFixed(1)}
+                </h1>
                 <h1 className="!text-3xl">IMDB</h1>
               </span>
               <h1 className="w-3/5 hidden">{movie.overview}</h1>
@@ -191,24 +193,24 @@ const MovieDetails = () => {
                   className="cursor-pointer text-black hover:text-white hover:bg-black border-1 hover:border-white flex items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition-all duration-300"
                 >
                   {/* <img src={icon} alt="YouTube" className="w-3 h-3" /> */}
-                  <Play className="text-amber-600 border-none"/>
-                  <h1 className="font-medium ">
-                    Watch Now{" "}
-                  </h1>
+                  <Play className="text-amber-600 border-none" />
+                  <h1 className="font-medium ">Watch Now </h1>
                 </div>
-                <div 
+                <div
                   onClick={() => {
                     if (isInWatchlist(movie.id)) {
                       removeFromWatchlist(movie.id);
                     } else {
-                      addToWatchlist({ ...movie, media_type: 'movie' });
+                      addToWatchlist({ ...movie, media_type: "movie" });
                     }
                   }}
                   className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
                 >
                   {isInWatchlist(movie.id) ? <Check /> : <Plus />}
                   <h1 className="font-medium">
-                    {isInWatchlist(movie.id) ? 'In Watchlist' : 'Add to Watchlist'}
+                    {isInWatchlist(movie.id)
+                      ? "In Watchlist"
+                      : "Add to Watchlist"}
                   </h1>
                 </div>
               </div>
@@ -236,95 +238,19 @@ const MovieDetails = () => {
               if (isInWatchlist(movie.id)) {
                 removeFromWatchlist(movie.id);
               } else {
-                addToWatchlist({ ...movie, media_type: 'movie' });
+                addToWatchlist({ ...movie, media_type: "movie" });
               }
             }}
             className="cursor-pointer flex flex-1 items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-xl transition duration-300"
           >
             {isInWatchlist(movie.id) ? <Check /> : <Plus />}
             <h1 className="text-[var(--text-primary)] font-semibold">
-              {isInWatchlist(movie.id) ? 'In Watchlist' : 'Add to Watchlist'}
+              {isInWatchlist(movie.id) ? "In Watchlist" : "Add to Watchlist"}
             </h1>
           </div>
         </div>
         <div>
           <h1 className="md:hidden">{movie.overview}</h1>
-        </div>
-        <div className="flex flex-col gap-8">
-          <div className="flex text-md font-semibold border-b-2 border-[var(--maintab-border)]">
-            <button
-              onClick={() => setTab("overview")}
-              className={
-                tab == "overview"
-                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
-                  : `flex-1 p-2`
-              }
-            >
-              Overview
-            </button>
-            <button
-              onClick={() => setTab("cast")}
-              className={
-                tab == "cast"
-                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
-                  : `flex-1 p-2`
-              }
-            >
-              Cast
-            </button>
-            <button
-              onClick={() => setTab("reviews")}
-              className={
-                tab == "reviews"
-                  ? `border-b-2 flex-1 p-2 border-[var(--secondary)]`
-                  : `flex-1 p-2`
-              }
-            >
-              Reviews
-            </button>
-          </div>
-          {tab === "overview" && (
-            <div className="p-4 bg-linear-to-r from-[#0A0A0A] rounded-xl border-2 border-[#282727]">
-              <h1 className="text-xl font-bold text-[var(--secondary)]">
-                Movie Details
-              </h1>
-              <span className="flex justify-between">
-                <h1 className="">Release Date </h1>
-                <h1 className="text-[var(--secondary)]">
-                  {movie.release_date}
-                </h1>
-              </span>
-              <span className="flex justify-between">
-                <h1 className="text-textgray">Status</h1>
-                <h1 className="text-[var(--text-secondary)]">{movie.status}</h1>
-              </span>
-              <span className="flex justify-between">
-                <h1 className="text-textgray">Runtime</h1>
-                <h1 className="text-[var(--text-secondary)]">
-                  {formatRuntime(movie.runtime)}
-                </h1>
-              </span>
-              <span className="flex justify-between">
-                <h1 className="text-textgray">Budget</h1>
-                <h1 className="text-[var(--text-secondary)]">
-                  {formatMillions(movie.budget)}
-                </h1>
-              </span>
-              <span className="flex justify-between">
-                <h1 className="text-textgray">Revenue</h1>
-                <h1 className="text-[var(--text-secondary)]">
-                  {formatMillions(movie.revenue)}
-                </h1>
-              </span>
-              <span className="flex justify-between">
-                <h1 className="text-textgray">Language</h1>
-                <h1 className="text-[var(--text-secondary)]">
-                  {movie.original_language}
-                </h1>
-              </span>
-            </div>
-          )}
-          <div></div>
         </div>
       </div>
       {/* Recommendations only after backdrop is loaded ? Now I am updating it to show recommendations before the backdrop is loaded*/}
