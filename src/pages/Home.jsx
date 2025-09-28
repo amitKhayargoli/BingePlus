@@ -118,7 +118,7 @@ const Home = () => {
             force them to confront the darkest corners of their pasts.
           </p>
 
-          <div className="md:flex flex-col md:flex-row gap-4 hidden ">
+          <div className="md:flex flex-col md:flex-row gap-4 hidden mt-2 ">
             <div
               onClick={() => setWatchMovie(true)}
               className="cursor-pointer text-black hover:text-white hover:bg-black border-1 hover:border-white flex items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition-all duration-300"
