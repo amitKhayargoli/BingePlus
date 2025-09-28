@@ -12,7 +12,7 @@ import { Navigation } from "swiper/modules";
 import icon from "/icon.png";
 import info from "/Info.png";
 import CardSlider from "../components/CardSlider";
-import { Info } from "lucide-react";
+import { Info, Play } from "lucide-react";
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -69,34 +69,34 @@ const Home = () => {
 
       const processData = (data, setter, listName) => {
         if (data.Response === "False") {
-        setErrorMessage(data.Error);
-        setter([]);
-        return false;
-      }
-      const resultsWithBlurHash = data.results.map(item => ({
-        ...item,
-        blur_hash: "LGF5]+Yk^6#M@-5c,1J5@[or[Q6." // Placeholder blur hash
-      }));
-      setter(resultsWithBlurHash || []);
-      return true;
-    };
+          setErrorMessage(data.Error);
+          setter([]);
+          return false;
+        }
+        const resultsWithBlurHash = data.results.map((item) => ({
+          ...item,
+          blur_hash: "LGF5]+Yk^6#M@-5c,1J5@[or[Q6.", // Placeholder blur hash
+        }));
+        setter(resultsWithBlurHash || []);
+        return true;
+      };
 
-    if (
-      processData(data, setMovieList, "movieList") &&
-      processData(data2, setTopRatedList, "topRatedList") &&
-      processData(data3, setTvList, "tvList") &&
-      processData(data4, setRomComList, "romComList") &&
-      processData(data5, setNetflixList, "netflixList")
-    ) {
-      // All data fetched and processed successfully
+      if (
+        processData(data, setMovieList, "movieList") &&
+        processData(data2, setTopRatedList, "topRatedList") &&
+        processData(data3, setTvList, "tvList") &&
+        processData(data4, setRomComList, "romComList") &&
+        processData(data5, setNetflixList, "netflixList")
+      ) {
+        // All data fetched and processed successfully
+      }
+    } catch (error) {
+      console.error(`Error fetching movies:`, error);
+      setErrorMessage("Error fetching movies. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error(`Error fetching movies:`, error);
-    setErrorMessage("Error fetching movies. Please try again later.");
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   useEffect(() => {
     fetchMovies();
@@ -120,7 +120,7 @@ const Home = () => {
 
           {/* Buttons */}
 
-          <div className="flex flex-col sm:flex-row text-sm md:text-md gap-0 md:gap-4 justify-center">
+          {/* <div className="flex flex-col sm:flex-row text-sm md:text-md gap-0 md:gap-4 justify-center">
             <div
               onClick={() => navigate("/movies/986056")}
               className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--button-primary)] text-black font-semibold rounded-xl items-center"
@@ -134,6 +134,24 @@ const Home = () => {
             >
               <Info />
               <h1>Details</h1>
+            </div>
+          </div> */}
+
+          <div className="md:flex flex-col md:flex-row gap-4 hidden ">
+            <div
+              onClick={() => setWatchMovie(true)}
+              className="cursor-pointer text-black hover:text-white hover:bg-black border-1 hover:border-white flex items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition-all duration-300"
+            >
+              {/* <img src={icon} alt="YouTube" className="w-3 h-3" /> */}
+              <Play className="text-amber-600 border-none" />
+              <h1 className="font-medium ">Watch Now </h1>
+            </div>
+            <div
+              onClick={() => navigate("/movies/986056")}
+              className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
+            >
+              <Info />
+              <h1>SeeDetails</h1>
             </div>
           </div>
         </div>
