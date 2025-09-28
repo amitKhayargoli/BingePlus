@@ -109,7 +109,7 @@ const Home = () => {
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
-          <h1 className="text-2xl sm:text-4xl font-bold gray-gradient">
+          <h1 className="md:flex hidden text-2xl sm:text-4xl font-bold gray-gradient">
             Thunderbolts*
           </h1>
           <p className="hidden sm:block w-100 md:w-150 text-lg font-extralight">
