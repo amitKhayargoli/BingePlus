@@ -118,25 +118,6 @@ const Home = () => {
             force them to confront the darkest corners of their pasts.
           </p>
 
-          {/* Buttons */}
-
-          {/* <div className="flex flex-col sm:flex-row text-sm md:text-md gap-0 md:gap-4 justify-center">
-            <div
-              onClick={() => navigate("/movies/986056")}
-              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--button-primary)] text-black font-semibold rounded-xl items-center"
-            >
-              <img className="w-[12px] h-[15px] mx-2" src={icon} alt="" />
-              <h1>Watch Now</h1>
-            </div>
-            <div
-              onClick={() => navigate("/movies/986056")}
-              className="mt-2 cursor-pointer flex px-2 py-3 md:p-4 bg-[var(--primary)] text-[var(--secondary)] font-semibold rounded-xl items-center gap-2"
-            >
-              <Info />
-              <h1>Details</h1>
-            </div>
-          </div> */}
-
           <div className="md:flex flex-col md:flex-row gap-4 hidden ">
             <div
               onClick={() => setWatchMovie(true)}
@@ -151,7 +132,7 @@ const Home = () => {
               className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
             >
               <Info />
-              <h1>SeeDetails</h1>
+              <h1>More Details</h1>
             </div>
           </div>
         </div>
