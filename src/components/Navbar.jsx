@@ -102,7 +102,7 @@ const Navbar = () => {
           Binge+
         </h1>
 
-        {theme === "dark" ? (
+        {/* {theme === "dark" ? (
           <li
             onClick={() => {
               setTheme("freshlight");
@@ -128,7 +128,7 @@ const Navbar = () => {
               alt=""
             />
           </li>
-        )}
+        )} */}
       </div>
 
       {/* Mobile Bottom Navbar */}
