@@ -30,22 +30,24 @@ const WatchTV = () => {
 
   // Generate meta tags for social sharing
   const generateMetaTags = () => {
-    const title = selectedEpisode && show 
-      ? `Watch ${show.name} Season ${selectedSeason} Episode ${selectedEpisode.episode_number} on Bingeplus`
-      : show 
-      ? `Watch ${show.name} Season ${selectedSeason || '1'} on Bingeplus`
-      : 'Watch TV Shows on Bingeplus';
-      
-    const description = selectedEpisode?.overview || 
-                       show?.overview || 
-                       `Stream ${show?.name || 'TV shows'} online for free on Bingeplus!`;
-                       
-    const imageUrl = selectedEpisode?.still_path 
+    const title =
+      selectedEpisode && show
+        ? `Watch ${show.name} Season ${selectedSeason} Episode ${selectedEpisode.episode_number} on Bingeplus`
+        : show
+          ? `Watch ${show.name} Season ${selectedSeason || "1"} on Bingeplus`
+          : "Watch TV Shows on Bingeplus";
+
+    const description =
+      selectedEpisode?.overview ||
+      show?.overview ||
+      `Stream ${show?.name || "TV shows"} online for free on Bingeplus!`;
+
+    const imageUrl = selectedEpisode?.still_path
       ? `https://image.tmdb.org/t/p/w500${selectedEpisode.still_path}`
-      : show?.poster_path 
-      ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
-      : '/default-episode-image.jpg';
-      
+      : show?.poster_path
+        ? `https://image.tmdb.org/t/p/w500${show.poster_path}`
+        : "/default-episode-image.jpg";
+
     return { title, description, imageUrl };
   };
 
@@ -102,8 +104,8 @@ const WatchTV = () => {
   // Handle next episode button click
   const handleNextEpisode = () => {
     if (!selectedEpisode || episodes.length === 0) return;
-    
-    const currentIndex = episodes.findIndex(e => e.id === selectedEpisode.id);
+
+    const currentIndex = episodes.findIndex((e) => e.id === selectedEpisode.id);
     if (currentIndex < episodes.length - 1) {
       // Go to next episode in current season
       const nextEpisode = episodes[currentIndex + 1];
@@ -111,7 +113,9 @@ const WatchTV = () => {
       updateUrl(selectedSeason, nextEpisode.episode_number);
     } else if (seasons.length > 0) {
       // Current episode is last in season, try to go to next season
-      const currentSeasonIndex = seasons.findIndex(s => s.season_number === selectedSeason);
+      const currentSeasonIndex = seasons.findIndex(
+        (s) => s.season_number === selectedSeason
+      );
       if (currentSeasonIndex < seasons.length - 1) {
         // There is a next season available
         const nextSeason = seasons[currentSeasonIndex + 1].season_number;
@@ -134,9 +138,7 @@ const WatchTV = () => {
   // When episodes change, or ep from url changes, select the correct episode
   useEffect(() => {
     if (episodes.length > 0) {
-      const episodeFromUrl = episodes.find(
-        (e) => e.episode_number == ep
-      );
+      const episodeFromUrl = episodes.find((e) => e.episode_number == ep);
       if (episodeFromUrl) {
         setSelectedEpisode(episodeFromUrl);
       } else {
@@ -149,54 +151,35 @@ const WatchTV = () => {
   useEffect(() => {
     const handleMessage = (event) => {
       // Check if the message is from our iframe and is about the next button
-      if (event.data && typeof event.data === 'string') {
+      if (event.data && typeof event.data === "string") {
         // Some players send JSON strings, so we need to try parsing it
         try {
           const data = JSON.parse(event.data);
-          if (data.action === 'next' || data.type === 'next' || data.command === 'next') {
+          if (
+            data.action === "next" ||
+            data.type === "next" ||
+            data.command === "next"
+          ) {
             handleNextEpisode();
           }
         } catch (e) {
           // If it's not JSON, check if it's a simple string command
-          if (event.data === 'nextEpisode' || event.data === 'next') {
+          if (event.data === "nextEpisode" || event.data === "next") {
             handleNextEpisode();
           }
         }
       }
     };
 
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, [selectedEpisode, episodes, seasons, selectedSeason]);
-
-  // Generate meta tags
-  const { title, description, imageUrl } = generateMetaTags();
 
   return (
     <>
       <Helmet>
         {/* Page title */}
         <title>{title}</title>
-        
-        {/* Open Graph tags for social sharing (Instagram, Facebook, Discord) */}
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:width" content="500" />
-        <meta property="og:image:height" content="281" />
-        <meta property="og:type" content="video.episode" />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:site_name" content="Bingeplus" />
-        
-        {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={imageUrl} />
-        
-        {/* Additional meta tags for better SEO */}
-        <meta name="description" content={description} />
-        <meta name="keywords" content={`${show?.name || ''}, watch online, streaming, TV show, Bingeplus`} />
       </Helmet>
       {/* <Navbar />   */}
       <div className="flex h-[100vh] md:mt-0 flex-wrap relative overflow-hidden">
@@ -231,10 +214,10 @@ const WatchTV = () => {
                 onLoad={() => {
                   // Add a script to the iframe to intercept the next button click
                   try {
-                    const iframe = document.querySelector('iframe');
+                    const iframe = document.querySelector("iframe");
                     if (iframe && iframe.contentWindow) {
                       // Override the next button click in the iframe
-                      const script = document.createElement('script');
+                      const script = document.createElement("script");
                       script.textContent = `
                         // Find and intercept the next button click
                         document.addEventListener('DOMContentLoaded', () => {
@@ -257,7 +240,7 @@ const WatchTV = () => {
                       iframe.contentDocument.head.appendChild(script);
                     }
                   } catch (e) {
-                    console.error('Failed to inject script into iframe:', e);
+                    console.error("Failed to inject script into iframe:", e);
                   }
                 }}
               />
@@ -300,7 +283,9 @@ const WatchTV = () => {
                 episode={ep}
                 show={show}
                 season={selectedSeason}
-                isCurrentlyPlaying={selectedEpisode && selectedEpisode.id === ep.id}
+                isCurrentlyPlaying={
+                  selectedEpisode && selectedEpisode.id === ep.id
+                }
               />
             ))}
           </div>
