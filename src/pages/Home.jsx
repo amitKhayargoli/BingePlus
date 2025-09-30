@@ -108,6 +108,8 @@ const Home = () => {
       <div className="flex mt-10 md:mt-0 bg-[var(--primary)] flex-col justify-center items-center movie-details text-[var(--secondary)] bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
+        {/* Add a slider with multiple movies from the TMDB API and a carousel  */}
+
         <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
           <h1 className="md:flex hidden text-2xl sm:text-4xl font-bold gray-gradient">
             Thunderbolts*
@@ -150,6 +152,14 @@ const Home = () => {
           isLoading={isLoading}
           errorMessage={errorMessage}
         />
+
+        <CardSlider
+          title="Netflix Originals"
+          tvList={netflixList}
+          isLoading={isLoading}
+          errorMessage={errorMessage}
+        />
+
         <CardSlider
           title="Popular TV Shows"
           tvList={tvList}
@@ -159,12 +169,6 @@ const Home = () => {
         <CardSlider
           title="Romantic Comedy Movies"
           movieList={romComList}
-          isLoading={isLoading}
-          errorMessage={errorMessage}
-        />
-        <CardSlider
-          title="Netflix Originals"
-          tvList={netflixList}
           isLoading={isLoading}
           errorMessage={errorMessage}
         />
