@@ -109,7 +109,7 @@ const Home = () => {
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         {/* Add a slider with multiple movies from the TMDB API and a carousel  */}
-        <Swiper>
+        <Swiper modules={[Navigation]} navigation={true} className="mySwiper">
           {movieList.slice(0, 5).map((movie) => (
             <SwiperSlide key={movie.id}>
               <div className="relative w-full h-[95vh] ">
