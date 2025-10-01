@@ -105,10 +105,56 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="flex mt-10 md:mt-0 bg-[var(--primary)] flex-col justify-center items-center movie-details text-[var(--secondary)] bg-[url(/thunderbolts.png)] lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
+      <div className="flex mt-10 md:mt-0 bg-[var(--primary)] movie-details text-[var(--secondary)]  lg:aspect-auto h-[40vh] bg-cover sm:bg-cover sm:h-[95vh]">
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         {/* Add a slider with multiple movies from the TMDB API and a carousel  */}
+        <Swiper>
+          {movieList.slice(0, 5).map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <div className="relative w-full h-[95vh] ">
+                <img
+                  className="h-full object-cover brightness-50 w-full "
+                  src={
+                    movie.backdrop_path
+                      ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+                      : hero
+                  }
+                  alt={movie.title}
+                  onLoad={() => setIsBackdropLoaded(true)}
+                />
+                {isBackdropLoaded && (
+                  <div className="absolute inset-0 flex flex-col justify-center items-start px-5 md:px-20 gap-5">
+                    <h1 className="text-3xl md:text-5xl font-bold">
+                      {movie.title}
+                    </h1>
+                    <p className="text-sm md:text-lg max-w-2xl">
+                      {movie.overview.length > 200
+                        ? movie.overview.slice(0, 200) + "..."
+                        : movie.overview}
+                    </p>
+                    <div className="flex gap-3">
+                      <button
+                        onClick={() => navigate(`/watch/${movie.id}`)}
+                        className="bg-white text-black px-4 py-2 rounded flex items-center gap-2 hover:bg-gray-300 transition"
+                      >
+                        <Play size={16} />
+                        Play
+                      </button>
+                      <button
+                        onClick={() => navigate(`/movies/${movie.id}`)}
+                        className="bg-[gray]/70 text-white px-4 py-2 rounded flex items-center gap-2 hover:bg-[gray]/50 transition"
+                      >
+                        <Info size={16} />
+                        More Info
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
       <div className="px-5 flex flex-col gap-5 bg-[var(--primary)] mb-10">
         <CardSlider
