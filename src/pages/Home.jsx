@@ -109,35 +109,6 @@ const Home = () => {
         {/* <img className='lg:aspect-auto w-auto object-cover ' src={hero} onLoad={() => setIsBackdropLoaded(true)}  alt="" /> */}
 
         {/* Add a slider with multiple movies from the TMDB API and a carousel  */}
-
-        <div className="p-2 sm:p-5 md:p-10 text-center flex flex-col items-center">
-          <h1 className="md:flex hidden text-2xl sm:text-4xl font-bold gray-gradient">
-            Thunderbolts*
-          </h1>
-          <p className="hidden sm:block w-100 md:w-150 text-lg font-extralight">
-            After finding themselves ensnared in a death trap, seven
-            disillusioned castoffs must embark on a dangerous mission that will
-            force them to confront the darkest corners of their pasts.
-          </p>
-
-          <div className="md:flex flex-col md:flex-row gap-4 hidden mt-2 ">
-            <div
-              onClick={() => setWatchMovie(true)}
-              className="cursor-pointer text-black hover:text-white hover:bg-black border-1 hover:border-white flex items-center justify-center gap-2 bg-[var(--secondary)] px-6 rounded-lg transition-all duration-300"
-            >
-              {/* <img src={icon} alt="YouTube" className="w-3 h-3" /> */}
-              <Play className="text-amber-600 border-none" />
-              <h1 className="font-medium ">Watch Now </h1>
-            </div>
-            <div
-              onClick={() => navigate("/movies/986056")}
-              className="cursor-pointer hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 bg-[var(--primary)] border-1 border-gray-200 px-4 py-3 rounded-lg duration-300"
-            >
-              <Info />
-              <h1>More Details</h1>
-            </div>
-          </div>
-        </div>
       </div>
       <div className="px-5 flex flex-col gap-5 bg-[var(--primary)] mb-10">
         <CardSlider
